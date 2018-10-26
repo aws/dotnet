@@ -23,7 +23,7 @@ This library is an extension for the AWS SDK for .NET to integrate with .NET Cor
 
 [AWS Logging .NET](https://github.com/aws/aws-logging-dotnet)  
 [![nuget](https://img.shields.io/nuget/v/AWS.Logger.AspNetCore.svg)](https://www.nuget.org/packages/AWS.Logger.AspNetCore/)  
-An AWS implementation of [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core) ILogger that records logging messages to Amazon CloudWatch Logs.
+These libraries integrate Amazon CloudWatch Logs with popular .NET logging libraries.
 
 [AWS Cognito Authentication Library](https://github.com/aws/aws-sdk-net/tree/master/extensions/src/AWSSDK.Extensions.CognitoAuthentication)  
 [![nuget](https://img.shields.io/nuget/v/AWSSDK.Extensions.CognitoAuthentication.svg)](https://www.nuget.org/packages/AWSSDK.Extensions.CognitoAuthentication/)  
