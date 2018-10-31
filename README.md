@@ -6,8 +6,8 @@ Click on the links below to jump to a section:
 * [Online Resources](#Online-Resources)
 * [Software and Libraries](#Software-and-Libraries)
 * [.NET Development Tools](#NET-Development-Tools)
-* [Documentation](#Documentation)
 * [AWS Cloud Resources for .NET](#AWS-Cloud-Resources-for-NET)
+* [Documentation](#Documentation)
 
 ## Online Resources
 
@@ -76,6 +76,14 @@ The AWS Lambda Tools for Powershell can be used to create and deploy AWS Lambda 
 [![nuget](https://img.shields.io/nuget/v/Amazon.Lambda.Tools.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Lambda.Tools.svg)](https://www.nuget.org/packages/Amazon.Lambda.Tools/)  
 This repository contains AWS tool extensions to the .NET CLI. These tool extensions are focused on building .NET Core and ASP.NET Core applications and deploying them to AWS services. Many of these deployment commands are the same commands the AWS Toolkit for Visual Studio uses to perform its deployment features. 
 
+## AWS Cloud Resources for .NET
+
+[.NET Core EC2 AMIs](https://aws.amazon.com/about-aws/whats-new/2018/03/announcing--net-core-ami-for-amazon-ec2/)  
+Amazon Web Services offers Amazon Machine Images (AMI) with .NET Core on Amazon Linux 2 and Ubuntu.
+
+[.NET Core CodeBuild Images](https://github.com/aws/aws-codebuild-docker-images/tree/master/ubuntu/dot-net)  
+This repository holds Dockerfiles of official AWS CodeBuild curated Docker images. Please refer to the [AWS CodeBuild User Guide](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html) for list of environments supported by AWS CodeBuild.
+
 ## Documentation
 [AWS .NET Developer Guide](https://github.com/awsdocs/aws-net-developer-guide)  
 The AWS SDK for .NET Developer Guide describes how to implement applications for AWS using the AWS SDK for .NET
@@ -94,13 +102,3 @@ Lambda Developer guide describes in detail on how to write C# Lambda functions a
 
 [AWS Lambda - Lambda Functions (PowerShell)](https://docs.aws.amazon.com/lambda/latest/dg/powershell-programming-model.html)  
 Lambda Developer guide describes in detail on how to write PowerShell Lambda functions and how to deploy them.
-
-
-## AWS Cloud Resources for .NET
-
-[.NET Core EC2 AMIs](https://aws.amazon.com/about-aws/whats-new/2018/03/announcing--net-core-ami-for-amazon-ec2/)  
-Amazon Web Services offers Amazon Machine Images (AMI) with .NET Core on Amazon Linux 2 and Ubuntu.
-
-[.NET Core CodeBuild Images](https://github.com/aws/aws-codebuild-docker-images/tree/master/ubuntu/dot-net)  
-This repository holds Dockerfiles of official AWS CodeBuild curated Docker images. Please refer to the [AWS CodeBuild User Guide](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html) for list of environments supported by AWS CodeBuild.
-
