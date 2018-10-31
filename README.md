@@ -18,7 +18,7 @@ Find all the .NET code samples, step-by-step guides, videos, blog content, tools
 Come see what .NET developers at AWS are up to!  Learn about new .NET software announcements, guides, and how-to's.
 
 [@awsfornet](https://twitter.com/awsfornet)  
-Follow us on twitter!
+Follow us on Twitter!
 
 ## Software and Libraries
 
@@ -44,9 +44,9 @@ An extension library to assist in the Amazon Cognito User Pools authentication p
 [![nuget](https://img.shields.io/nuget/v/Amazon.ElastiCacheCluster.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.ElastiCacheCluster.svg)](https://www.nuget.org/packages/Amazon.ElastiCacheCluster/)  
 Amazon ElastiCache Cluster Configuration is an enhanced .NET library that supports connecting to an Amazon ElastiCache cluster for Auto Discovery. This client library is an extension built upon Enyim and is released under the Apache 2.0 License.
 
-[AWS DynamoDB Accelerator (DAX) .NET Client](https://aws.amazon.com/dynamodb/dax/)  
+[AWS DynamoDB Accelerator (DAX) for Microsoft .NET](https://aws.amazon.com/dynamodb/dax/)  
 [![nuget](https://img.shields.io/nuget/v/AWSSDK.DAX.Client.svg) ![downloads](https://img.shields.io/nuget/dt/AWSSDK.DAX.Client.svg)](https://www.nuget.org/packages/AWSSDK.DAX.Client/)  
-AWS DynamoDB Accelerator (DAX) .NET Client -- DAX is a fully managed, in-memory cache for DynamoDB.
+AWS DynamoDB Accelerator (DAX) for Microsoft .NET -- DAX is a fully managed, in-memory cache for DynamoDB.
 
 [AWS X-Ray SDK for .NET](https://github.com/aws/aws-xray-sdk-dotnet)  
 AWS X-Ray helps developers analyze and debug distributed applications. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors.
