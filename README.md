@@ -6,7 +6,7 @@ Click on the links below to jump to a section:
 * [Online Resources](#Online-Resources)
 * [Software and Libraries](#Software-and-Libraries)
 * [.NET Development Tools](#NET-Development-Tools)
-* [Documentation and Samples](#Documentation-and-Samples)
+* [Documentation](#Documentation)
 * [AWS Cloud Resources for .NET](#AWS-Cloud-Resources-for-NET)
 
 ## Online Resources
@@ -67,7 +67,7 @@ This repository contains AWS tool extensions to the .NET CLI. These tool extensi
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-vsts-tools.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)    
 Tasks for Amazon S3, AWS Elastic Beanstalk, AWS CodeDeploy, AWS Lambda and AWS CloudFormation and more, and running commands in the AWS Tools for Windows PowerShell module and the AWS CLI.
 
-## Documentation and Samples
+## Documentation
 [AWS .NET Developer Guide](https://github.com/awsdocs/aws-net-developer-guide)  
 The AWS SDK for .NET Developer Guide describes how to implement applications for AWS using the AWS SDK for .NET
 
