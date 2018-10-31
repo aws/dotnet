@@ -58,6 +58,9 @@ The AWS Tools for PowerShell Core lets developers and administrators manage thei
 [AWS Tools for Windows PowerShell](https://www.powershellgallery.com/packages/AWSPowerShell)   
 The AWS Tools for Windows PowerShell lets developers and administrators manage their AWS services from the Windows PowerShell scripting environment.
 
+[The AWS Lambda Tools for Powershell](https://www.powershellgallery.com/packages/AWSLambdaPSCore)   
+The AWS Lambda Tools for Powershell can be used to create and deploy AWS Lambda functions written in PowerShell.
+
 [AWS Extensions for dotnet CLI](https://github.com/aws/aws-extensions-for-dotnet-cli)  
 [![nuget](https://img.shields.io/nuget/v/Amazon.Lambda.Tools.svg)](https://www.nuget.org/packages/Amazon.Lambda.Tools/)  
 This repository contains AWS tool extensions to the .NET CLI. These tool extensions are focused on building .NET Core and ASP.NET Core applications and deploying them to AWS services. Many of these deployment commands are the same commands the AWS Toolkit for Visual Studio uses to perform its deployment features. 
@@ -79,6 +82,10 @@ Learn about creating and deploying Elastic Beanstalk Applications in .NET Using 
 
 [AWS Lambda - Lambda Functions (C#)](https://docs.aws.amazon.com/lambda/latest/dg/dotnet-programming-model.html)  
 Lambda Developer guide describes in detail on how to write C# Lambda functions and how to deploy them.
+
+[AWS Lambda - Lambda Functions (PowerShell)](https://docs.aws.amazon.com/lambda/latest/dg/powershell-programming-model.html)  
+Lambda Developer guide describes in detail on how to write PowerShell Lambda functions and how to deploy them.
+
 
 ## AWS Cloud Resources for .NET
 
