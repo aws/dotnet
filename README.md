@@ -29,19 +29,23 @@ The AWS SDK for .NET enables .NET developers to easily work with Amazon Web Serv
 This repository contains tools and blueprints used to create C# and Powershell AWS Lambda functions.
 
 [AWS Extensions .NET Core Setup](https://github.com/aws/aws-sdk-net/tree/master/extensions/src/AWSSDK.Extensions.NETCore.Setup)  
-[![nuget](https://img.shields.io/nuget/v/AWSSDK.Extensions.NETCore.Setup.svg)](https://www.nuget.org/packages/AWSSDK.Extensions.NETCore.Setup/)  
+[![nuget](https://img.shields.io/nuget/v/AWSSDK.Extensions.NETCore.Setup.svg) ![downloads](https://img.shields.io/nuget/dt/AWSSDK.Extensions.NETCore.Setup.svg)](https://www.nuget.org/packages/AWSSDK.Extensions.NETCore.Setup/)  
 This library is an extension for the AWS SDK for .NET to integrate with .NET Core configuration and dependency injection frameworks.
 
 [AWS Logging .NET](https://github.com/aws/aws-logging-dotnet)  
-[![nuget](https://img.shields.io/nuget/v/AWS.Logger.AspNetCore.svg)](https://www.nuget.org/packages/AWS.Logger.AspNetCore/)  
+[![nuget](https://img.shields.io/nuget/v/AWS.Logger.AspNetCore.svg) ![downloads](https://img.shields.io/nuget/dt/AWS.Logger.AspNetCore.svg)](https://www.nuget.org/packages/AWS.Logger.AspNetCore/)  
 These libraries integrate Amazon CloudWatch Logs with popular .NET logging libraries.
 
 [AWS Cognito Authentication Library](https://github.com/aws/aws-sdk-net/tree/master/extensions/src/AWSSDK.Extensions.CognitoAuthentication)  
-[![nuget](https://img.shields.io/nuget/v/AWSSDK.Extensions.CognitoAuthentication.svg)](https://www.nuget.org/packages/AWSSDK.Extensions.CognitoAuthentication/)  
+[![nuget](https://img.shields.io/nuget/v/AWSSDK.Extensions.CognitoAuthentication.svg) ![downloads](https://img.shields.io/nuget/dt/AWSSDK.Extensions.CognitoAuthentication.svg)](https://www.nuget.org/packages/AWSSDK.Extensions.CognitoAuthentication/)  
 An extension library to assist in the Amazon Cognito User Pools authentication process.  This library is in [developer preview](https://aws.amazon.com/blogs/developer/cognitoauthentication-extension-library-developer-preview/).
 
+[Amazon ElastiCache Cluster Configuration for .NET](https://github.com/awslabs/elasticache-cluster-config-net)  
+[![nuget](https://img.shields.io/nuget/v/Amazon.ElastiCacheCluster.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.ElastiCacheCluster.svg)](https://www.nuget.org/packages/Amazon.ElastiCacheCluster/)  
+Amazon ElastiCache Cluster Configuration is an enhanced .NET library that supports connecting to an Amazon ElastiCache cluster for Auto Discovery. This client library is an extension built upon Enyim and is released under the Apache 2.0 License.
+
 [AWS DynamoDB Accelerator (DAX) .NET Client](https://aws.amazon.com/dynamodb/dax/)  
-[![nuget](https://img.shields.io/nuget/v/AWSSDK.DAX.Client.svg)](https://www.nuget.org/packages/AWSSDK.DAX.Client/)  
+[![nuget](https://img.shields.io/nuget/v/AWSSDK.DAX.Client.svg) ![downloads](https://img.shields.io/nuget/dt/AWSSDK.DAX.Client.svg)](https://www.nuget.org/packages/AWSSDK.DAX.Client/)  
 AWS DynamoDB Accelerator (DAX) .NET Client -- DAX is a fully managed, in-memory cache for DynamoDB.
 
 [AWS X-Ray SDK for .NET](https://github.com/aws/aws-xray-sdk-dotnet)  
@@ -49,26 +53,28 @@ AWS X-Ray helps developers analyze and debug distributed applications. With X-Ra
 
 ## .NET Development Tools
 [AWS Toolkit for Visual Studio 2017](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)  
-[![VS Marketplace](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.AWSToolkitforVisualStudio2017.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)    
+[![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.AWSToolkitforVisualStudio2017.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.AWSToolkitforVisualStudio2017.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)    
 The AWS Toolkit for Visual Studio 2017 is an extension for Microsoft Visual Studio 2017 on Microsoft Windows that makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services. 
 
+[AWS Tools for Microsoft Visual Studio Team Services (VSTS)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)  
+[![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.aws-vsts-tools.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-vsts-tools.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)    
+Tasks for Amazon S3, AWS Elastic Beanstalk, AWS CodeDeploy, AWS Lambda and AWS CloudFormation and more, and running commands in the AWS Tools for Windows PowerShell module and the AWS CLI.
+
 [AWS Tools for Powershell Core](https://www.powershellgallery.com/packages/AWSPowerShell.NetCore)  
+[![PS Gallery](https://img.shields.io/powershellgallery/v/AWSPowerShell.NetCore.svg) ![downloads](https://img.shields.io/powershellgallery/dt/AWSPowerShell.NetCore.svg)](https://www.powershellgallery.com/packages/AWSPowerShell.NetCore)  
 The AWS Tools for PowerShell Core lets developers and administrators manage their AWS services from the PowerShell Core scripting environment.
 
 [AWS Tools for Windows PowerShell](https://www.powershellgallery.com/packages/AWSPowerShell)   
+[![PS Gallery](https://img.shields.io/powershellgallery/v/AWSPowerShell.svg) ![downloads](https://img.shields.io/powershellgallery/dt/AWSPowerShell.svg)](https://www.powershellgallery.com/packages/AWSPowerShell)  
 The AWS Tools for Windows PowerShell lets developers and administrators manage their AWS services from the Windows PowerShell scripting environment.
 
-[The AWS Lambda Tools for Powershell](https://www.powershellgallery.com/packages/AWSLambdaPSCore)   
+[AWS Lambda Tools for Powershell](https://www.powershellgallery.com/packages/AWSLambdaPSCore)  
+[![PS Gallery](https://img.shields.io/powershellgallery/v/AWSLambdaPSCore.svg) ![downloads](https://img.shields.io/powershellgallery/dt/AWSLambdaPSCore.svg)](https://www.powershellgallery.com/packages/AWSLambdaPSCore)  
 The AWS Lambda Tools for Powershell can be used to create and deploy AWS Lambda functions written in PowerShell.
 
 [AWS Extensions for dotnet CLI](https://github.com/aws/aws-extensions-for-dotnet-cli)  
-[![nuget](https://img.shields.io/nuget/v/Amazon.Lambda.Tools.svg)](https://www.nuget.org/packages/Amazon.Lambda.Tools/)  
+[![nuget](https://img.shields.io/nuget/v/Amazon.Lambda.Tools.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Lambda.Tools.svg)](https://www.nuget.org/packages/Amazon.Lambda.Tools/)  
 This repository contains AWS tool extensions to the .NET CLI. These tool extensions are focused on building .NET Core and ASP.NET Core applications and deploying them to AWS services. Many of these deployment commands are the same commands the AWS Toolkit for Visual Studio uses to perform its deployment features. 
-
-
-[AWS Tools for Microsoft Visual Studio Team Services (VSTS)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)  
-[![VS Marketplace](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-vsts-tools.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)    
-Tasks for Amazon S3, AWS Elastic Beanstalk, AWS CodeDeploy, AWS Lambda and AWS CloudFormation and more, and running commands in the AWS Tools for Windows PowerShell module and the AWS CLI.
 
 ## Documentation
 [AWS .NET Developer Guide](https://github.com/awsdocs/aws-net-developer-guide)  
@@ -76,6 +82,9 @@ The AWS SDK for .NET Developer Guide describes how to implement applications for
 
 [AWS SDK for .NET V3 API Reference](https://docs.aws.amazon.com/sdkfornet/v3/apidocs/Index.html)  
 Official AWS SDK for .NET API reference.
+
+[AWS Tools for Powershell Cmdlet Reference](https://docs.aws.amazon.com/powershell/latest/reference/Index.html)  
+Official AWS Tools for Powershell Cmdlet reference.
 
 [AWS Elastic Beanstalk - Working with .NET](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_NET.html)  
 Learn about creating and deploying Elastic Beanstalk Applications in .NET Using AWS Toolkit for Visual Studio
