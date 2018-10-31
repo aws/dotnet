@@ -1,13 +1,24 @@
 [![alt text](./logo.png ".NET on AWS")](https://aws.amazon.com/developer/language/net/)
 
-<strong>.NET on AWS</strong> is the home of .NET development on AWS.  You'll find libraries, tools, and resources to help you build .NET applications and services on AWS.  
+<strong>aws/dotnet</strong> is the home of .NET development on AWS.  You'll find libraries, tools, and resources to help you build .NET applications and services on AWS.  
 
-Click on the links below to jump to the section:
-* [Software and Libraries](#Software-and-Libraries)
-* [Development Tools](#.NET-Development-Tools)
-* [Documentation and Samples](#Documentation-and-Samples)
+Click on the links below to jump to a section:
 * [Online Resources](#Online-Resources)
-* [AWS .NET Resources](#AWS-.NET-Resources)
+* [Software and Libraries](#Software-and-Libraries)
+* [.NET Development Tools](#NET-Development-Tools)
+* [Documentation and Samples](#Documentation-and-Samples)
+* [AWS Cloud Resources for .NET](#AWS-Cloud-Resources-for-NET)
+
+## Online Resources
+
+[AWS Developer Center - Explore .NET on AWS](https://aws.amazon.com/developer/language/net/)  
+Find all the .NET code samples, step-by-step guides, videos, blog content, tools, and information about live events that you need in one place. 
+
+[AWS Developer Blog - .NET](https://aws.amazon.com/blogs/developer/category/programing-language/dot-net/)  
+Come see what .NET developers at AWS are up to!  Learn about new .NET software announcements, guides, and how-to's.
+
+[@awsfornet](https://twitter.com/awsfornet)  
+Follow us on twitter!
 
 ## Software and Libraries
 
@@ -69,22 +80,11 @@ Learn about creating and deploying Elastic Beanstalk Applications in .NET Using 
 [AWS Lambda - Lambda Functions (C#)](https://docs.aws.amazon.com/lambda/latest/dg/dotnet-programming-model.html)  
 Lambda Developer guide describes in detail on how to write C# Lambda functions and how to deploy them.
 
-[AWS CodeBuild User Guide - .NET Core in Linux Sample](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-net-core-linux.html)  
-This sample uses a AWS CodeBuild build environment running .NET Core to build an executable file out of code written in C#.
-
-## Online Resources
-
-[AWS Developer Center - Explore .NET on AWS](https://aws.amazon.com/developer/language/net/)  
-Find all the .NET code samples, step-by-step guides, videos, blog content, tools, and information about live events that you need in one place. 
-
-[AWS Developer Blog - .NET](https://aws.amazon.com/blogs/developer/category/programing-language/dot-net/)  
-Come see what .NET developers at AWS are up to!  Learn about new .NET software announcements, guides, and how-to's.
-
-[@awsfornet](https://twitter.com/awsfornet)  
-Follow us on twitter!
-
-## AWS .NET Resources
+## AWS Cloud Resources for .NET
 
 [.NET Core EC2 AMIs](https://aws.amazon.com/about-aws/whats-new/2018/03/announcing--net-core-ami-for-amazon-ec2/)  
 Amazon Web Services offers Amazon Machine Images (AMI) with .NET Core on Amazon Linux 2 and Ubuntu.
+
+[.NET Core CodeBuild Images](https://github.com/aws/aws-codebuild-docker-images/tree/master/ubuntu/dot-net)  
+This repository holds Dockerfiles of official AWS CodeBuild curated Docker images. Please refer to the [AWS CodeBuild User Guide](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html) for list of environments supported by AWS CodeBuild.
 
