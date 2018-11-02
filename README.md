@@ -1,6 +1,6 @@
 [![alt text](./logo.png ".NET on AWS")](https://aws.amazon.com/developer/language/net/)
 
-<strong>aws/dotnet</strong> is the home of .NET development on AWS.  You'll find libraries, tools, and resources to help you build .NET applications and services on AWS.  
+<strong>aws/dotnet</strong> is the GitHub home for .NET development on AWS.  You'll find libraries, tools, and resources to help you build .NET applications and services on AWS.
 
 Click on the links below to jump to a section:
 * [Online Resources](#Online-Resources)
