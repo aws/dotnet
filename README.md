@@ -65,15 +65,12 @@ The toolkit is in preview and only available if built from source. This is pre-r
 Tasks for Amazon S3, AWS Elastic Beanstalk, AWS CodeDeploy, AWS Lambda and AWS CloudFormation and more, and running commands in the AWS Tools for Windows PowerShell module and the AWS CLI.
 
 [AWS Tools for Powershell Core](https://www.powershellgallery.com/packages/AWSPowerShell.NetCore)  
-[![PS Gallery](https://img.shields.io/powershellgallery/v/AWSPowerShell.NetCore.svg) ![downloads](https://img.shields.io/powershellgallery/dt/AWSPowerShell.NetCore.svg)](https://www.powershellgallery.com/packages/AWSPowerShell.NetCore)  
 The AWS Tools for PowerShell Core lets developers and administrators manage their AWS services from the PowerShell Core scripting environment.
 
 [AWS Tools for Windows PowerShell](https://www.powershellgallery.com/packages/AWSPowerShell)   
-[![PS Gallery](https://img.shields.io/powershellgallery/v/AWSPowerShell.svg) ![downloads](https://img.shields.io/powershellgallery/dt/AWSPowerShell.svg)](https://www.powershellgallery.com/packages/AWSPowerShell)  
 The AWS Tools for Windows PowerShell lets developers and administrators manage their AWS services from the Windows PowerShell scripting environment.
 
 [AWS Lambda Tools for Powershell](https://www.powershellgallery.com/packages/AWSLambdaPSCore)  
-[![PS Gallery](https://img.shields.io/powershellgallery/v/AWSLambdaPSCore.svg) ![downloads](https://img.shields.io/powershellgallery/dt/AWSLambdaPSCore.svg)](https://www.powershellgallery.com/packages/AWSLambdaPSCore)  
 The AWS Lambda Tools for Powershell can be used to create and deploy AWS Lambda functions written in PowerShell.
 
 [AWS Extensions for dotnet CLI](https://github.com/aws/aws-extensions-for-dotnet-cli)  
