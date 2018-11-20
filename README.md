@@ -7,6 +7,7 @@ Click on the links below to jump to a section:
 * [Software and Libraries](#Software-and-Libraries)
 * [.NET Development Tools](#NET-Development-Tools)
 * [AWS Cloud Resources for .NET](#AWS-Cloud-Resources-for-NET)
+* [Projects in Development](#Projects-In-Development)
 * [Documentation](#Documentation)
 
 ## Online Resources
@@ -84,6 +85,20 @@ Amazon Web Services offers Amazon Machine Images (AMI) with .NET Core on Amazon 
 
 [.NET Core CodeBuild Images](https://github.com/aws/aws-codebuild-docker-images/tree/master/ubuntu/dot-net)  
 This repository holds Dockerfiles of official AWS CodeBuild curated Docker images. Please refer to the [AWS CodeBuild User Guide](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html) for list of environments supported by AWS CodeBuild.
+
+## Projects in Development
+
+[ASP.NET Core Identity Provider for Amazon Cognito](https://github.com/aws/aws-aspnet-cognito-identity-provider)  
+ASP.NET Core Identity Provider for Amazon Cognito simplifies using Amazon Cognito as a membership storage solution for building ASP.NET Core web applications using ASP.NET Core Identity.
+
+[Amazon Cognito Authentication Extension Library](https://github.com/aws/aws-sdk-net-extensions-cognito)  
+The Amazon Cognito Extension Library simplifies the authentication process of Amazon Cognito User Pools for .NET developers.  It allows you to use various authentication methods for Amazon Cognito User Pools with only a few short method calls, along with making the process intuitive.
+
+[AWS Simple Systems Manager ASP.NET Core Data Protection Provider](https://github.com/aws/aws-ssm-data-protection-provider-for-aspnet)  
+Simple Systems Manager ASP.NET Core Data Protection Provider library allows you to use AWS SSM's Parameter Store to store keys generted by ASP.NET's Data Protection API. This enables you to scale by allowing multiple web servers to share the keys.
+
+[AWS .NET Configuration Extension for Systems Manager](https://github.com/aws/aws-dotnet-extensions-configuration)  
+Configuration Extension for Systems Manager library simplifies using AWS SSM's Parameter Store as a source for configuration information for .NET Core applications. This project was contributed by [@KenHundley](https://github.com/kenhundley).
 
 ## Documentation
 [AWS .NET Developer Guide](https://github.com/awsdocs/aws-net-developer-guide)  
