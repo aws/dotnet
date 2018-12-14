@@ -45,6 +45,10 @@ An extension library to assist in the Amazon Cognito User Pools authentication p
 [![nuget](https://img.shields.io/nuget/v/Amazon.ElastiCacheCluster.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.ElastiCacheCluster.svg)](https://www.nuget.org/packages/Amazon.ElastiCacheCluster/)  
 Amazon ElastiCache Cluster Configuration is an enhanced .NET library that supports connecting to an Amazon ElastiCache cluster for Auto Discovery. This client library is an extension built upon Enyim and is released under the Apache 2.0 License.
 
+[AWS Systems Manager ASP.NET Core Data Protection Provider](https://github.com/aws/aws-ssm-data-protection-provider-for-aspnet)  
+[![nuget](https://img.shields.io/nuget/v/Amazon.AspNetCore.DataProtection.SSM.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.AspNetCore.DataProtection.SSM.svg)](https://www.nuget.org/packages/Amazon.ElastiCacheCluster/)  
+AWS Systems Manager ASP.NET Core Data Protection Provider library allows you to use AWS SSM's Parameter Store to store keys generted by ASP.NET's Data Protection API. This enables you to scale by allowing multiple web servers to share the keys.
+
 [DynamoDB Accelerator (DAX) for Microsoft .NET](https://aws.amazon.com/dynamodb/dax/)  
 [![nuget](https://img.shields.io/nuget/v/AWSSDK.DAX.Client.svg) ![downloads](https://img.shields.io/nuget/dt/AWSSDK.DAX.Client.svg)](https://www.nuget.org/packages/AWSSDK.DAX.Client/)  
 DynamoDB Accelerator (DAX) for Microsoft .NET -- DAX is a fully managed, in-memory cache for DynamoDB.
@@ -93,9 +97,6 @@ ASP.NET Core Identity Provider for Amazon Cognito simplifies using Amazon Cognit
 
 [Amazon Cognito Authentication Extension Library](https://github.com/aws/aws-sdk-net-extensions-cognito)  
 The Amazon Cognito Extension Library simplifies the authentication process of Amazon Cognito User Pools for .NET developers.  It allows you to use various authentication methods for Amazon Cognito User Pools with only a few short method calls, along with making the process intuitive.
-
-[AWS Simple Systems Manager ASP.NET Core Data Protection Provider](https://github.com/aws/aws-ssm-data-protection-provider-for-aspnet)  
-Simple Systems Manager ASP.NET Core Data Protection Provider library allows you to use AWS SSM's Parameter Store to store keys generted by ASP.NET's Data Protection API. This enables you to scale by allowing multiple web servers to share the keys.
 
 [AWS .NET Configuration Extension for Systems Manager](https://github.com/aws/aws-dotnet-extensions-configuration)  
 Configuration Extension for Systems Manager library simplifies using AWS SSM's Parameter Store as a source for configuration information for .NET Core applications. This project was contributed by [@KenHundley](https://github.com/kenhundley).
