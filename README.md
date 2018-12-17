@@ -41,6 +41,10 @@ These libraries integrate Amazon CloudWatch Logs with popular .NET logging libra
 [![nuget](https://img.shields.io/nuget/v/AWSSDK.Extensions.CognitoAuthentication.svg) ![downloads](https://img.shields.io/nuget/dt/AWSSDK.Extensions.CognitoAuthentication.svg)](https://www.nuget.org/packages/AWSSDK.Extensions.CognitoAuthentication/)  
 An extension library to assist in the Amazon Cognito User Pools authentication process.  This library is in [developer preview](https://aws.amazon.com/blogs/developer/cognitoauthentication-extension-library-developer-preview/).
 
+[AWS .NET Configuration Extension for Systems Manager](https://github.com/aws/aws-dotnet-extensions-configuration)  
+[![nuget](https://img.shields.io/nuget/v/Amazon.Extensions.Configuration.SystemsManager.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Extensions.Configuration.SystemsManager.svg)](https://www.nuget.org/packages/Amazon.Extensions.Configuration.SystemsManager/)  
+Configuration Extension for Systems Manager library simplifies using AWS SSM's Parameter Store as a source for configuration information for .NET Core applications. This project was contributed by [@KenHundley](https://github.com/kenhundley).
+
 [Amazon ElastiCache Cluster Configuration for .NET](https://github.com/awslabs/elasticache-cluster-config-net)  
 [![nuget](https://img.shields.io/nuget/v/Amazon.ElastiCacheCluster.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.ElastiCacheCluster.svg)](https://www.nuget.org/packages/Amazon.ElastiCacheCluster/)  
 Amazon ElastiCache Cluster Configuration is an enhanced .NET library that supports connecting to an Amazon ElastiCache cluster for Auto Discovery. This client library is an extension built upon Enyim and is released under the Apache 2.0 License.
@@ -97,9 +101,6 @@ ASP.NET Core Identity Provider for Amazon Cognito simplifies using Amazon Cognit
 
 [Amazon Cognito Authentication Extension Library](https://github.com/aws/aws-sdk-net-extensions-cognito)  
 The Amazon Cognito Extension Library simplifies the authentication process of Amazon Cognito User Pools for .NET developers.  It allows you to use various authentication methods for Amazon Cognito User Pools with only a few short method calls, along with making the process intuitive.
-
-[AWS .NET Configuration Extension for Systems Manager](https://github.com/aws/aws-dotnet-extensions-configuration)  
-Configuration Extension for Systems Manager library simplifies using AWS SSM's Parameter Store as a source for configuration information for .NET Core applications. This project was contributed by [@KenHundley](https://github.com/kenhundley).
 
 ## Documentation
 [AWS .NET Developer Guide](https://github.com/awsdocs/aws-net-developer-guide)  
