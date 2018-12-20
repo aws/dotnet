@@ -7,7 +7,6 @@ Click on the links below to jump to a section:
 * [Software and Libraries](#Software-and-Libraries)
 * [.NET Development Tools](#NET-Development-Tools)
 * [AWS Cloud Resources for .NET](#AWS-Cloud-Resources-for-NET)
-* [Projects in Development](#Projects-In-Development)
 * [Documentation](#Documentation)
 
 ## Online Resources
@@ -37,9 +36,13 @@ This library is an extension for the AWS SDK for .NET to integrate with .NET Cor
 [![nuget](https://img.shields.io/nuget/v/AWS.Logger.AspNetCore.svg) ![downloads](https://img.shields.io/nuget/dt/AWS.Logger.AspNetCore.svg)](https://www.nuget.org/packages/AWS.Logger.AspNetCore/)  
 These libraries integrate Amazon CloudWatch Logs with popular .NET logging libraries.
 
-[AWS Cognito Authentication Library](https://github.com/aws/aws-sdk-net/tree/master/extensions/src/AWSSDK.Extensions.CognitoAuthentication)  
-[![nuget](https://img.shields.io/nuget/v/AWSSDK.Extensions.CognitoAuthentication.svg) ![downloads](https://img.shields.io/nuget/dt/AWSSDK.Extensions.CognitoAuthentication.svg)](https://www.nuget.org/packages/AWSSDK.Extensions.CognitoAuthentication/)  
-An extension library to assist in the Amazon Cognito User Pools authentication process.  This library is in [developer preview](https://aws.amazon.com/blogs/developer/cognitoauthentication-extension-library-developer-preview/).
+[Amazon Cognito Authentication Extension Library](https://github.com/aws/aws-sdk-net-extensions-cognito)  
+[![nuget](https://img.shields.io/nuget/v/Amazon.Extensions.CognitoAuthentication.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Extensions.CognitoAuthentication.svg)](https://www.nuget.org/packages/Amazon.Extensions.CognitoAuthentication/)  
+The Amazon Cognito Extension Library simplifies the authentication process of Amazon Cognito User Pools for .NET developers.  It allows you to use various authentication methods for Amazon Cognito User Pools with only a few short method calls, along with making the process intuitive.
+
+[ASP.NET Core Identity Provider for Amazon Cognito - Developer Preview](https://github.com/aws/aws-aspnet-cognito-identity-provider)  
+[![nuget](https://img.shields.io/nuget/v/Amazon.AspNetCore.Identity.Cognito.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.AspNetCore.Identity.Cognito.svg)](https://www.nuget.org/packages/Amazon.AspNetCore.Identity.Cognito/)  
+ASP.NET Core Identity Provider for Amazon Cognito simplifies using Amazon Cognito as a membership storage solution for building ASP.NET Core web applications using ASP.NET Core Identity.
 
 [AWS .NET Configuration Extension for Systems Manager](https://github.com/aws/aws-dotnet-extensions-configuration)  
 [![nuget](https://img.shields.io/nuget/v/Amazon.Extensions.Configuration.SystemsManager.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Extensions.Configuration.SystemsManager.svg)](https://www.nuget.org/packages/Amazon.Extensions.Configuration.SystemsManager/)  
@@ -93,14 +96,6 @@ Amazon Web Services offers Amazon Machine Images (AMI) with .NET Core on Amazon 
 
 [.NET Core CodeBuild Images](https://github.com/aws/aws-codebuild-docker-images/tree/master/ubuntu/dot-net)  
 This repository holds Dockerfiles of official AWS CodeBuild curated Docker images. Please refer to the [AWS CodeBuild User Guide](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html) for list of environments supported by AWS CodeBuild.
-
-## Projects in Development
-
-[ASP.NET Core Identity Provider for Amazon Cognito](https://github.com/aws/aws-aspnet-cognito-identity-provider)  
-ASP.NET Core Identity Provider for Amazon Cognito simplifies using Amazon Cognito as a membership storage solution for building ASP.NET Core web applications using ASP.NET Core Identity.
-
-[Amazon Cognito Authentication Extension Library](https://github.com/aws/aws-sdk-net-extensions-cognito)  
-The Amazon Cognito Extension Library simplifies the authentication process of Amazon Cognito User Pools for .NET developers.  It allows you to use various authentication methods for Amazon Cognito User Pools with only a few short method calls, along with making the process intuitive.
 
 ## Documentation
 [AWS .NET Developer Guide](https://github.com/awsdocs/aws-net-developer-guide)  
