@@ -82,6 +82,10 @@ The AWS Tools for PowerShell Core lets developers and administrators manage thei
 [AWS Tools for Windows PowerShell](https://www.powershellgallery.com/packages/AWSPowerShell)   
 The AWS Tools for Windows PowerShell lets developers and administrators manage their AWS services from the Windows PowerShell scripting environment.
 
+[AWS .NET Mock Lambda Test Tool - Preview](https://github.com/aws/aws-lambda-dotnet/tree/master/Tools/LambdaTestTool)  
+[![nuget](https://img.shields.io/nuget/v/Amazon.Lambda.TestTool-2.1.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Lambda.TestTool-2.1.svg)](https://www.nuget.org/packages/Amazon.Lambda.TestTool-2.1/)  
+The AWS .NET Mock Lambda Test Tool is a tool that can be used to load a .NET Core Lambda project and execute the selected code inside an emulated Lambda environment. An IDE that is attached to the process hosting this tool can then debug and step through the .NET Core Lambda code. The tool is optimized for quick local debugging with minimal dependencies.
+
 [AWS Lambda Tools for Powershell](https://www.powershellgallery.com/packages/AWSLambdaPSCore)  
 The AWS Lambda Tools for Powershell can be used to create and deploy AWS Lambda functions written in PowerShell.
 
