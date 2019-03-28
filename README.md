@@ -68,7 +68,7 @@ DynamoDB Accelerator (DAX) for Microsoft .NET -- DAX is a fully managed, in-memo
 AWS X-Ray helps developers analyze and debug distributed applications. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors.
 
 ## .NET Development Tools
-[AWS Toolkit for Visual Studio 2017](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)  
+[AWS Toolkit for Visual Studio 2017 and 2019](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.AWSToolkitforVisualStudio2017.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.AWSToolkitforVisualStudio2017.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)    
 The AWS Toolkit for Visual Studio 2017 is an extension for Microsoft Visual Studio 2017 on Microsoft Windows that makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services. 
 
