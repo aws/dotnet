@@ -81,8 +81,8 @@ The toolkit is in preview and only available if built from source. This is pre-r
 Tasks for Amazon S3, AWS Elastic Beanstalk, AWS CodeDeploy, AWS Lambda and AWS CloudFormation and more, and running commands in the AWS Tools for Windows PowerShell module and the AWS CLI.
 
 [AWS Tools for Windows PowerShell and PowerShell Core](https://github.com/aws/aws-tools-for-powershell)  
-[![](https://img.shields.io/powershellgallery/v/AWSPowerShell.svg)](https://www.powershellgallery.com/packages/AWSPowerShell)  
-[![](https://img.shields.io/powershellgallery/v/AWSPowerShell.NetCore.svg)](https://www.powershellgallery.com/packages/AWSPowerShell.NetCore)  
+[![](https://img.shields.io/powershellgallery/v/AWSPowerShell.svg?label=AWSPowerShell)](https://www.powershellgallery.com/packages/AWSPowerShell)  
+[![](https://img.shields.io/powershellgallery/v/AWSPowerShell.NetCore.svg?label=AWSPowerShell.NetCore)](https://www.powershellgallery.com/packages/AWSPowerShell.NetCore)  
 The AWS Tools for Windows PowerShell and PowerShell Core let developers and administrators manage their AWS services from the PowerShell  scripting environment.
 
 [AWS .NET Mock Lambda Test Tool - Preview](https://github.com/aws/aws-lambda-dotnet/tree/master/Tools/LambdaTestTool)  
