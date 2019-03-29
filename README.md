@@ -80,11 +80,10 @@ The toolkit is in preview and only available if built from source. This is pre-r
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.aws-vsts-tools.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-vsts-tools.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)    
 Tasks for Amazon S3, AWS Elastic Beanstalk, AWS CodeDeploy, AWS Lambda and AWS CloudFormation and more, and running commands in the AWS Tools for Windows PowerShell module and the AWS CLI.
 
-[AWS Tools for Powershell Core](https://www.powershellgallery.com/packages/AWSPowerShell.NetCore)  
-The AWS Tools for PowerShell Core lets developers and administrators manage their AWS services from the PowerShell Core scripting environment.
-
-[AWS Tools for Windows PowerShell](https://www.powershellgallery.com/packages/AWSPowerShell)   
-The AWS Tools for Windows PowerShell lets developers and administrators manage their AWS services from the Windows PowerShell scripting environment.
+[AWS Tools for Windows PowerShell and PowerShell Core](https://github.com/aws/aws-tools-for-powershell)  
+[![](https://img.shields.io/powershellgallery/v/AWSPowerShell.svg?label=AWSPowerShell)](https://www.powershellgallery.com/packages/AWSPowerShell)  
+[![](https://img.shields.io/powershellgallery/v/AWSPowerShell.NetCore.svg?label=AWSPowerShell.NetCore)](https://www.powershellgallery.com/packages/AWSPowerShell.NetCore)  
+The AWS Tools for Windows PowerShell and PowerShell Core let developers and administrators manage their AWS services from the PowerShell scripting environment.
 
 [AWS .NET Mock Lambda Test Tool - Preview](https://github.com/aws/aws-lambda-dotnet/tree/master/Tools/LambdaTestTool)  
 [![nuget](https://img.shields.io/nuget/v/Amazon.Lambda.TestTool-2.1.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Lambda.TestTool-2.1.svg)](https://www.nuget.org/packages/Amazon.Lambda.TestTool-2.1/)  
