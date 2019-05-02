@@ -77,7 +77,7 @@ The AWS Toolkit for Visual Studio 2017 is an extension for Microsoft Visual Stud
 The AWS Toolkit for Visual Studio Code is an extension for working with AWS services such as AWS Lambda.
 The toolkit is in preview and only available if built from source. This is pre-release software and we recommend against using it in a production environment.
 
-[AWS Tools for Microsoft Visual Studio Team Services (VSTS)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)  
+[AWS Tools for Microsoft Visual Studio Team Services (VSTS)](https://github.com/aws/aws-vsts-tools)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.aws-vsts-tools.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-vsts-tools.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)    
 Tasks for Amazon S3, AWS Elastic Beanstalk, AWS CodeDeploy, AWS Lambda and AWS CloudFormation and more, and running commands in the AWS Tools for Windows PowerShell module and the AWS CLI.
 
