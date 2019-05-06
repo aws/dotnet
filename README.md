@@ -40,6 +40,10 @@ These libraries integrate Amazon CloudWatch Logs with popular .NET logging libra
 [![nuget](https://img.shields.io/nuget/v/Amazon.Extensions.CognitoAuthentication.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Extensions.CognitoAuthentication.svg)](https://www.nuget.org/packages/Amazon.Extensions.CognitoAuthentication/)  
 The Amazon Cognito Extension Library simplifies the authentication process of Amazon Cognito User Pools for .NET developers.  It allows you to use various authentication methods for Amazon Cognito User Pools with only a few short method calls, along with making the process intuitive.
 
+[AWS Secrets Manager Caching Libary for .NET](https://github.com/aws/aws-secretsmanager-caching-net)  
+[![nuget](https://img.shields.io/nuget/v/AWSSDK.SecretsManager.Caching.svg) ![downloads](https://img.shields.io/nuget/dt/AWSSDK.SecretsManager.Caching.svg)](https://www.nuget.org/packages/AWSSDK.SecretsManager.Caching/)  
+The AWS Secrets Manager caching client enables in-process caching of secrets for .NET applications.
+
 [ASP.NET Core Identity Provider for Amazon Cognito](https://github.com/aws/aws-aspnet-cognito-identity-provider)  
 [![nuget](https://img.shields.io/nuget/v/Amazon.AspNetCore.Identity.Cognito.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.AspNetCore.Identity.Cognito.svg)](https://www.nuget.org/packages/Amazon.AspNetCore.Identity.Cognito/)  
 ASP.NET Core Identity Provider for Amazon Cognito simplifies using Amazon Cognito as a membership storage solution for building ASP.NET Core web applications using ASP.NET Core Identity.
