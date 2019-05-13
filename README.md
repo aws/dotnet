@@ -8,6 +8,7 @@ Click on the links below to jump to a section:
 * [.NET Development Tools](#NET-Development-Tools)
 * [AWS Cloud Resources for .NET](#AWS-Cloud-Resources-for-NET)
 * [Documentation](#Documentation)
+* [Talks](#Talks)
 
 ## Online Resources
 
@@ -127,3 +128,7 @@ Lambda Developer guide describes in detail on how to write C# Lambda functions a
 
 [AWS Lambda - Lambda Functions (PowerShell)](https://docs.aws.amazon.com/lambda/latest/dg/powershell-programming-model.html)  
 Lambda Developer guide describes in detail on how to write PowerShell Lambda functions and how to deploy them.
+
+## Talks
+
+You can find the code & slides presented at various conferences under `talk` folder.
