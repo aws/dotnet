@@ -1,0 +1,11 @@
+{
+    "region" : "",
+    "profile" : "",
+    "configuration" : "Release",
+    "framework"     : "netcoreapp1.0",
+    "s3-bucket"     : "normj-ndc-oslo",
+    "template"      : "serverless.template",
+    "stack-name"    : "Pollster",
+    "stack-wait"    : false,
+    "template-substitutions" : "$.Resources.PollScheduleStateMachine.Properties.DefinitionString.Fn::Sub=state-machine.json"
+}

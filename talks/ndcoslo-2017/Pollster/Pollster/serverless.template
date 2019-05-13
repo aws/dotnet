@@ -1,0 +1,279 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "Starting template for an AWS Serverless Application.",
+  "Parameters" : {
+  },
+  "Resources" : {
+
+
+    "PollDefinitionTable" : {
+        "Type" : "AWS::DynamoDB::Table",
+        "Properties" : {
+            "AttributeDefinitions" : [
+                {"AttributeName" : "Id", "AttributeType" : "S"} 
+            ],
+            "KeySchema"            : [
+                {"AttributeName" : "Id", "KeyType" : "HASH"}
+            ],
+            "ProvisionedThroughput" : {
+                "ReadCapacityUnits" : "10",
+                "WriteCapacityUnits" : "10"
+            },
+            "StreamSpecification" : {
+                "StreamViewType" : "KEYS_ONLY"
+            }
+        }
+    },
+
+    "ActivePollTable" : {
+        "Type" : "AWS::DynamoDB::Table",
+        "Properties" : {
+            "AttributeDefinitions" : [
+                {"AttributeName" : "Id", "AttributeType" : "S"} 
+            ],
+            "KeySchema"            : [
+                {"AttributeName" : "Id", "KeyType" : "HASH"}
+            ],
+            "ProvisionedThroughput" : {
+                "ReadCapacityUnits" : "10",
+                "WriteCapacityUnits" : "1"
+            }
+        }
+    },
+
+    "AspNetCoreFunction" : {
+      "Type" : "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "Pollster::Pollster.LambdaEntry::FunctionHandlerAsync",
+        "Runtime": "dotnetcore1.0",
+        "CodeUri": "",
+        "Description": "Default function",
+        "Environment" : {
+            "Variables" : {
+                "TABLE_POLL_DEFINITION" : { "Ref" : "PollDefinitionTable" },
+                "TABLE_ACTIVE_POLL" : { "Ref" : "ActivePollTable" }
+            }
+        },
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Role"    : {"Fn::GetAtt" : [ "LambdaRole", "Arn"]},
+        "Events": {
+          "PutResource": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "{proxy+}",
+              "Method": "ANY"
+            }
+          }
+        }
+      }
+    },
+
+    "PollScheduleStateMachine" : {
+        "Type" : "AWS::StepFunctions::StateMachine",
+        "Properties": {
+            "RoleArn": { "Fn::GetAtt": [ "StateMachineRole", "Arn" ] },
+            "DefinitionString": { "Fn::Sub": "" }
+        }
+    },
+
+    "ScheduleTask" : {
+        "Type" : "AWS::Lambda::Function",
+        "Properties" : {
+            "Handler" : "Pollster::Pollster.Workflow.StateMachineTasks::Schedule",
+            "Role"    : {"Fn::GetAtt" : [ "LambdaRole", "Arn"]},
+            "Runtime" : "dotnetcore1.0",
+            "MemorySize" : 256,
+            "Timeout" : 30,
+            "Environment" : {
+                "Variables" : {
+                    "LAMBDA_NET_SERIALIZER_DEBUG" : "true",
+                    "TABLE_POLL_DEFINITION" : { "Ref" : "PollDefinitionTable" },
+                    "TABLE_ACTIVE_POLL" : { "Ref" : "ActivePollTable" }
+                }
+            },
+            "Code" : {
+                "S3Bucket" : "",
+                "S3Key" : ""
+            }
+        }
+    },
+
+    "ActivateTask" : {
+        "Type" : "AWS::Lambda::Function",
+        "Properties" : {
+            "Handler" : "Pollster::Pollster.Workflow.StateMachineTasks::Activate",
+            "Role"    : {"Fn::GetAtt" : [ "LambdaRole", "Arn"]},
+            "Runtime" : "dotnetcore1.0",
+            "MemorySize" : 256,
+            "Timeout" : 30,
+            "Environment" : {
+                "Variables" : {
+                    "LAMBDA_NET_SERIALIZER_DEBUG" : "true",
+                    "TABLE_POLL_DEFINITION" : { "Ref" : "PollDefinitionTable" },
+                    "TABLE_ACTIVE_POLL" : { "Ref" : "ActivePollTable" }
+                }
+            },
+            "Code" : {
+                "S3Bucket" : "",
+                "S3Key" : ""
+            }
+        }
+    },
+
+    "DeactivateTask" : {
+        "Type" : "AWS::Lambda::Function",
+        "Properties" : {
+            "Handler" : "Pollster::Pollster.Workflow.StateMachineTasks::Deactivate",
+            "Role"    : {"Fn::GetAtt" : [ "LambdaRole", "Arn"]},
+            "Runtime" : "dotnetcore1.0",
+            "MemorySize" : 256,
+            "Timeout" : 30,
+            "Environment" : {
+                "Variables" : {
+                    "LAMBDA_NET_SERIALIZER_DEBUG" : "true",
+                    "TABLE_POLL_DEFINITION" : { "Ref" : "PollDefinitionTable" },
+                    "TABLE_ACTIVE_POLL" : { "Ref" : "ActivePollTable" }
+                }
+            },
+            "Code" : {
+                "S3Bucket" : "",
+                "S3Key" : ""
+            }
+        }
+    },
+
+    "DynamoDBProcessor" : {
+      "Type" : "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "Pollster::Pollster.Workflow.StreamProcessor::ProcessDDBEvent",
+        "Runtime": "dotnetcore1.0",
+        "CodeUri": "",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role"    : {"Fn::GetAtt" : [ "LambdaRole", "Arn"]},
+        "Environment" : {
+            "Variables" : {
+                "LAMBDA_NET_SERIALIZER_DEBUG" : "true",
+                "TABLE_POLL_DEFINITION" : { "Ref" : "PollDefinitionTable" },
+                "TABLE_ACTIVE_POLL" : { "Ref" : "ActivePollTable" },
+                "POLL_STATE_MACHINE" : { "Ref" : "PollScheduleStateMachine" }
+            }
+        },
+        "Events": {
+            "Polls" : {
+                "Type" : "DynamoDB",
+                "Properties" : {
+                    "StartingPosition" : "LATEST",
+                    "Stream"           : {"Fn::GetAtt" : [ "PollDefinitionTable", "StreamArn"]},
+                    "BatchSize" : 1
+                }
+            }
+        }
+      }
+    },
+
+    "StateMachineRole" : {
+        "Type" : "AWS::IAM::Role",
+        "Properties" : {
+            "AssumeRolePolicyDocument" : {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Service": {"Fn::Sub" : "states.${AWS::Region}.amazonaws.com"}
+                  },
+                  "Action": "sts:AssumeRole"
+                }
+              ]
+            },
+            "Policies" : [{
+                "PolicyName": "StepFunctionLambdaInvoke",
+                "PolicyDocument": {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "lambda:InvokeFunction"
+                      ],
+                      "Resource": "*"
+                    }
+                  ]
+                }
+            }]
+        }
+    },
+
+    "LambdaRole" : {
+        "Type" : "AWS::IAM::Role",
+        "Properties" : {
+            "AssumeRolePolicyDocument" : {
+                "Version" : "2012-10-17",
+                "Statement" : [
+                    {
+                        "Action" : [
+                            "sts:AssumeRole"
+                        ],
+                        "Effect" : "Allow",
+                        "Principal" : {
+                            "Service" : [
+                                "lambda.amazonaws.com"
+                            ]
+                        }
+                    }
+                ]
+            },
+            "ManagedPolicyArns" : [
+                "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+            ],
+            "Policies" : [{
+                "PolicyName": "PollsterAccess",
+                "PolicyDocument": {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "dynamodb:BatchGetItem",
+                        "dynamodb:DeleteItem",
+                        "dynamodb:DescribeTable",
+                        "dynamodb:GetItem",
+                        "dynamodb:PutItem",
+                        "dynamodb:Query",
+                        "dynamodb:Scan",
+                        "dynamodb:UpdateItem"
+                      ],
+                      "Resource": [
+                        {"Fn::Sub" : "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${PollDefinitionTable}"},
+                        {"Fn::Sub" : "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ActivePollTable}"}
+                    ]
+                    },
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "dynamodb:DescribeStream",
+                        "dynamodb:ListStreams",
+                        "dynamodb:GetRecords",
+                        "dynamodb:GetShardIterator"
+                      ],
+                      "Resource": {"Fn::GetAtt" : ["PollDefinitionTable", "StreamArn"]}
+                    },
+                    {
+                      "Action": [
+                        "states:StartExecution"
+                      ],
+                      "Effect": "Allow",
+                      "Resource": "*"
+                    }
+                  ]
+                }
+            }]
+        }
+    }
+  },
+  "Outputs" : {
+  }
+}

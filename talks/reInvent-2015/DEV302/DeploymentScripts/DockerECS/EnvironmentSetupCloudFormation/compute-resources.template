@@ -1,0 +1,403 @@
+﻿{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Description"              : "",
+    "Parameters"               : {
+        "ImageId" : {
+            "Type" : "AWS::EC2::Image::Id",
+            "Description" : "The base AMI to start with. This is expected to be the latest base Windows 2012 R2 AMI"
+        },
+        "InstanceType" : {
+            "Type" : "String",
+            "Description" : "The EC2 instance type to use when creating the application servers",
+            "Default"     : "t2.large"
+        },
+        "EC2KeyName"   : {
+            "Type" : "AWS::EC2::KeyPair::KeyName",
+            "Description" : "The EC2 key pair name to use for remoting into the application servers"
+        },
+        "ECSClusterName" : {
+            "Type" : "String",
+            "Description" : "The name of the ECS clusters for the EC2 instances to Join."
+        }
+    },
+    "Resources"                : {
+        "AppSecurity" : {
+            "Type" : "AWS::EC2::SecurityGroup",
+            "Properties" : {
+                "GroupDescription" : "The security group for the application servers",
+                "SecurityGroupIngress" : [
+                    {
+                        "CidrIp" : "0.0.0.0/0",
+                        "IpProtocol" : "tcp",
+                        "FromPort"   : "80",
+                        "ToPort"     : "80"
+                    },
+                    {
+                        "CidrIp" : "0.0.0.0/0",
+                        "IpProtocol" : "tcp",
+                        "FromPort"   : "5000",
+                        "ToPort"     : "5004"
+                    },
+                    {
+                        "CidrIp" : "0.0.0.0/0",
+                        "IpProtocol" : "tcp",
+                        "FromPort"   : "22",
+                        "ToPort"     : "22"
+                    }
+                ]
+            }
+        },
+        "AppServers1" : {
+            "Type" : "AWS::EC2::Instance",
+            "Properties" : {
+                "IamInstanceProfile" : {
+                    "Ref" : "InstanceRoleInstanceProfile"
+                },
+                "ImageId"            : {
+                    "Ref" : "ImageId"
+                },
+                "InstanceType"       : {
+                    "Ref" : "InstanceType"
+                },
+                "KeyName"            : {
+                    "Ref" : "EC2KeyName"
+                },
+                "SecurityGroups"     : [
+                    {
+                        "Ref" : "AppSecurity"
+                    }
+                ],
+                "Tags"               : [
+                    {
+                        "Key" : "Application",
+                        "Value" : "Pollster-DockerECS"
+                    }
+                ],
+                "UserData"           : {
+                    "Fn::Base64" : {
+                        "Fn::Join" : [
+                            "",
+                            [
+								"#!/bin/bash\n",
+								"echo ECS_CLUSTER=", {"Ref": "ECSClusterName"} , ">> /etc/ecs/ecs.config\n"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "AppServers2" : {
+            "Type" : "AWS::EC2::Instance",
+            "Properties" : {
+                "IamInstanceProfile" : {
+                    "Ref" : "InstanceRoleInstanceProfile"
+                },
+                "ImageId"            : {
+                    "Ref" : "ImageId"
+                },
+                "InstanceType"       : {
+                    "Ref" : "InstanceType"
+                },
+                "KeyName"            : {
+                    "Ref" : "EC2KeyName"
+                },
+                "SecurityGroups"     : [
+                    {
+                        "Ref" : "AppSecurity"
+                    }
+                ],
+                "Tags"               : [
+                    {
+                        "Key" : "Application",
+                        "Value" : "Pollster-DockerECS"
+                    }
+                ],
+                "UserData"           : {
+                    "Fn::Base64" : {
+                        "Fn::Join" : [
+                            "",
+                            [
+								"#!/bin/bash\n",
+								"echo ECS_CLUSTER=", {"Ref": "ECSClusterName"} , ">> /etc/ecs/ecs.config\n"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "AppServers3" : {
+            "Type" : "AWS::EC2::Instance",
+            "Properties" : {
+                "IamInstanceProfile" : {
+                    "Ref" : "InstanceRoleInstanceProfile"
+                },
+                "ImageId"            : {
+                    "Ref" : "ImageId"
+                },
+                "InstanceType"       : {
+                    "Ref" : "InstanceType"
+                },
+                "KeyName"            : {
+                    "Ref" : "EC2KeyName"
+                },
+                "SecurityGroups"     : [
+                    {
+                        "Ref" : "AppSecurity"
+                    }
+                ],
+                "Tags"               : [
+                    {
+                        "Key" : "Application",
+                        "Value" : "Pollster-DockerECS"
+                    }
+                ],
+                "UserData"           : {
+                    "Fn::Base64" : {
+                        "Fn::Join" : [
+                            "",
+                            [
+								"#!/bin/bash\n",
+								"echo ECS_CLUSTER=", {"Ref": "ECSClusterName"} , ">> /etc/ecs/ecs.config\n"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "LoadBalancerPollFeed" : {
+            "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
+            "Properties" : {
+                "AvailabilityZones" : {
+                    "Fn::GetAZs" : ""
+                },
+                "LoadBalancerName"  : "ecs-pollster-feed",
+                "Listeners"         : [
+                    {
+                        "Protocol" : "HTTP",
+                        "InstanceProtocol" : "HTTP",
+                        "InstancePort"     : "5002",
+                        "LoadBalancerPort" : "5002"
+                    }
+                ],
+                "HealthCheck"       : {
+                    "Timeout" : "5",
+                    "Interval" : "10",
+                    "Target"   : "HTTP:5002/api/Healthcheck",
+                    "HealthyThreshold" : "3",
+                    "UnhealthyThreshold" : "5"
+                },
+                "ConnectionDrainingPolicy" : {
+                    "Enabled" : false
+                },
+                "Tags"                     : [
+                    {
+                        "Key" : "Application",
+                        "Value" : "Pollster-DockerECS"
+                    }
+                ]
+            }
+        },
+        "LoadBalancerPollVoter" : {
+            "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
+            "Properties" : {
+                "AvailabilityZones" : {
+                    "Fn::GetAZs" : ""
+                },
+                "LoadBalancerName"  : "ecs-pollster-voter",
+                "Listeners"         : [
+                    {
+                        "Protocol" : "HTTP",
+                        "InstanceProtocol" : "HTTP",
+                        "InstancePort"     : "5003",
+                        "LoadBalancerPort" : "5003"
+                    }
+                ],
+                "HealthCheck"       : {
+                    "Timeout" : "5",
+                    "Interval" : "10",
+                    "Target"   : "HTTP:5003/api/Healthcheck",
+                    "HealthyThreshold" : "3",
+                    "UnhealthyThreshold" : "5"
+                },
+                "ConnectionDrainingPolicy" : {
+                    "Enabled" : false
+                },
+                "Tags"                     : [
+                    {
+                        "Key" : "Application",
+                        "Value" : "Pollster-DockerECS"
+                    }
+                ]
+            }
+        },
+        "LoadBalancerPollWebFrontend" : {
+            "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
+            "Properties" : {
+                "AvailabilityZones" : {
+                    "Fn::GetAZs" : ""
+                },
+                "LoadBalancerName"  : "ecs-pollster-frontend",
+                "Listeners"         : [
+                    {
+                        "Protocol" : "HTTP",
+                        "InstanceProtocol" : "HTTP",
+                        "InstancePort"     : "80",
+                        "LoadBalancerPort" : "80"
+                    }
+                ],
+                "HealthCheck"       : {
+                    "Timeout" : "5",
+                    "Interval" : "10",
+                    "Target"   : "HTTP:80/api/Healthcheck",
+                    "HealthyThreshold" : "3",
+                    "UnhealthyThreshold" : "5"
+                },
+                "ConnectionDrainingPolicy" : {
+                    "Enabled" : false
+                },
+                "Tags"                     : [
+                    {
+                        "Key" : "Application",
+                        "Value" : "Pollster-DockerECS"
+                    }
+                ]
+            }
+        },
+        "LoadBalancerPollWriter"      : {
+            "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
+            "Properties" : {
+                "AvailabilityZones" : {
+                    "Fn::GetAZs" : ""
+                },
+                "LoadBalancerName"  : "ecs-pollster-writer",
+                "Listeners"         : [
+                    {
+                        "Protocol" : "HTTP",
+                        "InstanceProtocol" : "HTTP",
+                        "InstancePort"     : "5001",
+                        "LoadBalancerPort" : "5001"
+                    }
+                ],
+                "HealthCheck"       : {
+                    "Timeout" : "5",
+                    "Interval" : "10",
+                    "Target"   : "HTTP:5001/api/Healthcheck",
+                    "HealthyThreshold" : "3",
+                    "UnhealthyThreshold" : "5"
+                },
+                "ConnectionDrainingPolicy" : {
+                    "Enabled" : false
+                },
+                "Tags"                     : [
+                    {
+                        "Key" : "Application",
+                        "Value" : "Pollster-DockerECS"
+                    }
+                ]
+            }
+        },
+        "InstanceRole"                : {
+            "Type" : "AWS::IAM::Role",
+            "Properties" : {
+                "AssumeRolePolicyDocument" : {
+                    "Statement" : [
+                        {
+                            "Effect" : "Allow",
+                            "Principal" : {
+                                "Service" : [
+                                    "ec2.amazonaws.com"
+                                ]
+                            },
+                            "Action"    : [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path"                     : "/"
+            }
+        },
+        "InstanceRolePolicies"        : {
+            "Type" : "AWS::IAM::Policy",
+            "Properties" : {
+                "PolicyName" : "InstanceRole",
+                "PolicyDocument" : {
+                    "Statement" : [
+                        {
+                            "Effect" : "Allow",
+                            "Action" : [
+                                "dynamodb:*",
+                                "swf:*",
+                                "sns:*",
+                                "logs:*"
+                            ],
+                            "Resource" : "*"
+                        },
+                        {
+                            "Effect" : "Allow",
+                            "Action" : [
+                                "ecs:CreateCluster",
+                                "ecs:RegisterContainerInstance",
+                                "ecs:DeregisterContainerInstance",
+                                "ecs:DiscoverPollEndpoint",
+                                "ecs:Submit*",
+                                "ecs:Poll"
+                            ],
+                            "Resource" : "*"
+                        }
+                    ]
+                },
+                "Roles"          : [
+                    {
+                        "Ref" : "InstanceRole"
+                    }
+                ]
+            }
+        },
+        "InstanceRoleInstanceProfile" : {
+            "Type" : "AWS::IAM::InstanceProfile",
+            "Properties" : {
+                "Path" : "/",
+                "Roles" : [
+                    {
+                        "Ref" : "InstanceRole"
+                    }
+                ]
+            }
+        }
+    },
+    "Outputs"                  : {
+        "LoadBalancerPollFeed" : {
+            "Value" : {
+                "Fn::GetAtt" : [
+                    "LoadBalancerPollFeed",
+                    "DNSName"
+                ]
+            }
+        },
+        "LoadBalancerPollVoter" : {
+            "Value" : {
+                "Fn::GetAtt" : [
+                    "LoadBalancerPollVoter",
+                    "DNSName"
+                ]
+            }
+        },
+        "LoadBalancerPollWebFrontend" : {
+            "Value" : {
+                "Fn::GetAtt" : [
+                    "LoadBalancerPollWebFrontend",
+                    "DNSName"
+                ]
+            }
+        },
+        "LoadBalancerPollWriter"      : {
+            "Value" : {
+                "Fn::GetAtt" : [
+                    "LoadBalancerPollWriter",
+                    "DNSName"
+                ]
+            }
+        }
+    }
+}

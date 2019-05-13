@@ -1,0 +1,7 @@
+﻿{
+  "WebAPIs": {
+    "PollWriterAPI": "http://ecs-pollster-writer-1675382150.us-west-2.elb.amazonaws.com:5001/",
+    "PollFeedAPI": "http://ecs-pollster-feed-11584202.us-west-2.elb.amazonaws.com:5002/",
+    "PollVoterAPI": "http://ecs-pollster-voter-264135992.us-west-2.elb.amazonaws.com:5003/"
+  }
+}

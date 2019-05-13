@@ -1,0 +1,12 @@
+version: 0.0
+os: windows
+files:
+  - source: \
+    destination: c:\inetpub\wwwroot\PollFeed
+hooks:
+  ApplicationStop:
+    - location: .\approot\src\PollFeed\CodeDeployScripts\IIS_RemoveWebApp.ps1
+      timeout: 30
+  ApplicationStart:
+    - location: .\approot\src\PollFeed\CodeDeployScripts\IIS_SetupWebApp.ps1
+      timeout: 30

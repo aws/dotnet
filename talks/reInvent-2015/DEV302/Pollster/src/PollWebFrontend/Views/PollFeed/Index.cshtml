@@ -1,0 +1,111 @@
+﻿@model IndexPollFeedViewModel
+
+@{
+    ViewData["Title"] = "Current Poll Feed";
+}
+
+
+@foreach (var poll in Model.Polls.OrderByDescending(x => x.StartTime))
+{
+    <div class="borderedpanel">
+        <h2>@(poll.Title)</h2>
+        <div class="pollquestion">@(poll.Question)</div>
+        <p>
+            <ul id="@(poll.Id)">
+                @foreach (var option in poll.Options.OrderBy(x => x.Key))
+                {
+                    <li class="polloption"><input type="radio" name="@(poll.Id)" value="@option.Key" />&nbsp;@option.Value.Text</li>
+        }
+            </ul>
+        </p>
+        <button id="@(poll.Id)" onclick="onSubmitVote('@(poll.Id)')">Vote!</button>
+
+    </div>
+}
+
+<script type="text/javascript">
+
+
+    var model = @Html.Raw(Json.Serialize(Model));
+
+
+
+    function onSubmitVote(pollId)
+    {
+        var checkedOption = document.querySelector('input[name="'+pollId+'"]:checked');
+        if (checkedOption === null) {
+            alert('You must select a choice before voting')
+            return;
+        }
+
+        var optionId = checkedOption.value;
+
+        $.ajax({
+        type: "POST",
+            url: "@Url.Action("SubmittedVote", "PollFeed")/?pollId=" + pollId + "&optionId=" + optionId,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: successFunc,
+            error: errorFunc
+        })
+    }
+
+    function successFunc(data, status) {
+        if (data.Success) {
+
+            // Find the existing poll so we can find the text of the poll options
+            var selectedPoll = null;
+            for (index = 0; index < model.Polls.length; ++index) {
+                if(model.Polls[index].Id == data.PollId) {
+                    selectedPoll = model.Polls[index];
+                    break;
+                }
+            }
+
+            if(selectedPoll != null) {
+                var button = $("button[id='"+ data.PollId +"']");
+                button.attr("disabled","disabled");
+
+                var parent = $("ul[id='"+ data.PollId +"']");
+
+                parent.empty();
+
+                for(var optionId in sortObjectByKey(data.LatestVotes)){
+                    var votes = data.LatestVotes[optionId];
+
+                    var message = selectedPoll.Options[optionId].Text + ": " + votes;
+                    var li = $('<li class="polloption">' + message + '</li>')
+                        .appendTo(parent);
+                }
+            }
+        }
+        else {
+            alert(data.ErrorMessage);
+        }
+    }
+
+    function errorFunc() {
+        alert('error');
+    }
+
+    function sortObjectByKey(obj){
+        var keys = [];
+        var sorted_obj = {};
+
+        for(var key in obj){
+            if(obj.hasOwnProperty(key)){
+                keys.push(key);
+            }
+        }
+
+        // sort keys
+        keys.sort();
+
+        // create new array based on Sorted Keys
+        jQuery.each(keys, function(i, key){
+            sorted_obj[key] = obj[key];
+        });
+
+        return sorted_obj;
+    };
+</script>

@@ -1,0 +1,9 @@
+version: 0.0
+os: windows
+files:
+  - source: \
+    destination: c:\inetpub\wwwroot\PollWriter
+hooks:
+  ApplicationStart:
+    - location: .\approot\src\PollWriter\SetupIIS.ps1
+      timeout: 30

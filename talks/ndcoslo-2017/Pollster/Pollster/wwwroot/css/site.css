@@ -1,0 +1,35 @@
+﻿h2 {
+    font-weight: bold;
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+footer {
+    font-size: 0.85em;
+    margin-top: 3px;
+    margin-left: 5px;
+}
+
+.pollquestion {
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 1.4em;
+}
+
+li.polloption {
+    list-style-type: none;
+}
+
+
+.pollform {
+    margin-top: 5px;
+}
+
+.pollcreate {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+button.voteComplete {
+    opacity: 0.5
+}

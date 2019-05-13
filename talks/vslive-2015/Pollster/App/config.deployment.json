@@ -1,0 +1,12 @@
+{
+  "Deployment": {
+    "PackagingDirectory": "C:/temp/pollster",
+    "S3Bucket": "pollster-deployments",
+    "DockerImageOwner": "awsdotnet",
+    "ECSCluster": "pollster"
+  },
+  "AWS": {
+    "Profile": null,
+    "Region": "us-west-2"
+  }
+}

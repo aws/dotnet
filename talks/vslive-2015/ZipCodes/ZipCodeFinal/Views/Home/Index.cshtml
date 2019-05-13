@@ -1,0 +1,91 @@
+﻿<div ng-app="" ng-controller="zipCodeController">
+    <div style="float:left; width: 50%; height:600px;" class="verticalLine">
+        <h3>Zip Code Details</h3>
+        <label>Search Zip:</label> <input type="text" ng-model="inputs.selectedZipCode" ng-change="selectedZipCodeChanged()" />
+
+        <br />
+        <br />
+        <label>State:</label> {{zipCode.state}}
+        <br />
+        <label>City:</label> {{zipCode.city}}
+
+        <br />
+        <br />
+        <img src="http://maps.googleapis.com/maps/api/staticmap?center={{zipCode.latitude}},{{zipCode.longitude}}&zoom=12&size=400x400&key={{apiKey}}" ng-show="zipCode.showMap" />
+    </div>
+    <div style="float:right;">
+        <h3>State Zip Codes</h3>
+        <label>Search State:</label> <input type="text" ng-model="inputs.selectedState" ng-change="selectedStateChanged()">
+
+        <ul>
+            <li class="animate-repeat" ng-repeat="zip in stateZips">
+                {{zip.PostalCode}} - {{zip.PlaceName}}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+
+    googleMapAPIKey = "";
+
+    function zipCodeController($scope, $http) {
+        
+        $scope.inputs = {
+            selectedState: "",
+            selectedZipCode: ""
+        };
+        $scope.zipCode = {}
+        $scope.stateZips = []
+
+        $scope.selectedZipCodeChanged = function () {
+
+            searchZipCode = $scope.inputs.selectedZipCode
+            $scope.zipCode = {}
+            $scope.zipCode.showMap = false
+
+            if (searchZipCode.length == 5) {
+                $http.get('/api/ZipCode/' + searchZipCode).success(function (data) {
+
+                    // If the inputted zip code is different then was searched for then skip the results
+                    if (searchZipCode != $scope.inputs.selectedZipCode || data.PlaceName == null)
+                        return
+
+                    $scope.zipCode.state = data.State
+                    $scope.zipCode.city = data.PlaceName
+                    $scope.zipCode.latitude = data.Latitude
+                    $scope.zipCode.longitude = data.Longitude
+
+
+                    if (googleMapAPIKey) {
+                        $scope.zipCode.showMap = true;
+                        $scope.apiKey = googleMapAPIKey;
+                    }
+                    else {
+                        $scope.zipCode.showMap = false;
+                        alert('A google map API Key must be configured for map to be displayed.')
+                    }
+                })
+            }
+        };
+
+
+        $scope.selectedStateChanged = function () {
+
+            searchState = $scope.inputs.selectedState
+            $scope.stateZips = []
+
+            if (searchState.length == 2) {
+                $http.get('/api/State/' + searchState).success(function (data) {
+
+                    // If the inputted zip code is different then was searched for then skip the results
+                    if (searchState != $scope.inputs.selectedState) {
+                        return
+                    }
+
+                    $scope.stateZips = data
+                })
+            }
+        };
+    }
+</script>

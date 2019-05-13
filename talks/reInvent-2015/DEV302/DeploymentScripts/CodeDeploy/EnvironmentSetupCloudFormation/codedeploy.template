@@ -1,0 +1,503 @@
+﻿{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Description"              : "",
+    "Parameters"               : {
+        "ImageId" : {
+            "Type" : "AWS::EC2::Image::Id",
+            "Description" : "The base AMI to start with. This is expected to be the latest base Windows 2012 R2 AMI"
+        },
+        "InstanceType" : {
+            "Type" : "String",
+            "Description" : "The EC2 instance type to use when creating the application servers",
+            "Default"     : "m1.small"
+        },
+        "EC2KeyName"   : {
+            "Type" : "AWS::EC2::KeyPair::KeyName",
+            "Description" : "The EC2 key pair name to use for remoting into the application servers"
+        },
+        "OpenRemoteDesktopPort" : {
+            "Type" : "String",
+            "Description" : "If set to Yes the RDP port will be open. This is useful for debugging but for security reason should not be done for production systems.",
+            "AllowedValues" : [
+                "Yes",
+                "No"
+            ]
+        }
+    },
+    "Conditions"               : {
+        "OpenRemoteDesktopPortCondition" : {
+            "Fn::Equals" : [
+                "Yes",
+                {
+                    "Ref" : "OpenRemoteDesktopPort"
+                }
+            ]
+        }
+    },
+    "Resources"                : {
+        "WaitHandle" : {
+            "Type" : "AWS::CloudFormation::WaitConditionHandle"
+        },
+        "WaitCondition" : {
+            "Type" : "AWS::CloudFormation::WaitCondition",
+            "Properties" : {
+                "Count" : 2,
+                "Handle" : {
+                    "Ref" : "WaitHandle"
+                },
+                "Timeout" : "900"
+            }
+        },
+        "AppSecurity"   : {
+            "Type" : "AWS::EC2::SecurityGroup",
+            "Properties" : {
+                "GroupDescription" : "The security group for the application servers",
+                "SecurityGroupIngress" : [
+                    {
+                        "CidrIp" : "0.0.0.0/0",
+                        "IpProtocol" : "tcp",
+                        "FromPort"   : "80",
+                        "ToPort"     : "80"
+                    },
+                    {
+                        "CidrIp" : {
+                            "Fn::If" : [
+                                "OpenRemoteDesktopPortCondition",
+                                "0.0.0.0/0",
+                                "0.0.0.0/32"
+                            ]
+                        },
+                        "IpProtocol" : "tcp",
+                        "FromPort"   : "3389",
+                        "ToPort"     : "3389"
+                    }
+                ]
+            }
+        },
+        "AppServers1"   : {
+            "Type" : "AWS::EC2::Instance",
+            "Metadata" : {
+                "AWS::CloudFormation::Init" : {
+                    "config" : {
+                        "commands" : {
+                            "00-set-aspnet-env"  : {
+                                "command" : "setx ASPNET_ENV ProductionIIS /M",
+                                "ignoreErrors" : "true",
+                                "waitAfterCompletion" : 0
+                            },
+                            "01-import-service-module"  : {
+                                "command" : "powershell.exe -Command Import-Module -Name ServerManager",
+                                "ignoreErrors" : "true",
+                                "waitAfterCompletion" : 0
+                            },
+                            "02-install-web-server"  : {
+                                "command" : "powershell.exe -Command Install-WindowsFeature Web-Server,Application-Server,AS-Web-Support",
+                                "ignoreErrors" : "true",
+                                "waitAfterCompletion" : 0
+                            },
+                            "03-download-host-agent" : {
+                                "command" : {
+                                    "Fn::Join" : [
+                                        "",
+                                        [
+                                            "powershell.exe -Command \"Read-S3Object ",
+                                            "-BucketName aws-codedeploy-us-east-1 ",
+                                            "-Key latest/codedeploy-agent.msi ",
+                                            "-File codedeploy-agent.msi\""
+                                        ]
+                                    ]
+                                },
+                                "cwd"     : "C:/cfn",
+                                "waitAfterCompletion" : 0
+                            },
+                            "04-install-host-agent"  : {
+                                "command" : "C:\\cfn\\codedeploy-agent.msi /quiet /l C:\\cfn\\host-agent-install-log.txt",
+                                "ignoreErrors" : "true",
+                                "waitAfterCompletion" : 0
+                            },
+                            "05-signal-ready"        : {
+                                "command" : {
+                                    "Fn::Join" : [
+                                        "",
+                                        [
+                                            "\"C:\\Program Files\\Amazon\\cfn-bootstrap\\cfn-signal\"",
+                                            " -e 0 \"",
+                                            {
+                                                "Ref" : "WaitHandle"
+                                            },
+                                            "\""
+                                        ]
+                                    ]
+                                },
+                                "waitAfterCompletion" : 0
+                            }
+                        },
+                        "services" : {
+                            "windows" : {
+                                "codedeploy-agent" : {
+                                    "enabled" : "true",
+                                    "ensureRunning" : "true",
+                                    "commands"      : [
+                                        "01-install-host-agent"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Properties" : {
+                "IamInstanceProfile" : {
+                    "Ref" : "InstanceRoleInstanceProfile"
+                },
+                "ImageId"            : {
+                    "Ref" : "ImageId"
+                },
+                "InstanceType"       : {
+                    "Ref" : "InstanceType"
+                },
+                "KeyName"            : {
+                    "Ref" : "EC2KeyName"
+                },
+                "SecurityGroups"     : [
+                    {
+                        "Ref" : "AppSecurity"
+                    }
+                ],
+                "Tags"               : [
+                    {
+                        "Key" : "Application",
+                        "Value" : "Pollster-CodeDeploy"
+                    }
+                ],
+                "UserData"           : {
+                    "Fn::Base64" : {
+                        "Fn::Join" : [
+                            "",
+                            [
+                                "<script>\n",
+                                "mkdir c:\\cfn\n",
+                                "mkdir c:\\cfn\\log\n",
+                                "c:\\\"Program Files\"\\Amazon\\cfn-bootstrap\\cfn-init.exe -s ",
+                                {
+                                    "Ref" : "AWS::StackName"
+                                },
+                                " --region ",
+                                {
+                                    "Ref" : "AWS::Region"
+                                },
+                                " -r AppServers1 > c:\\cfn\\log\\cfn-call-log 2>&1",
+                                "</script>"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "AppServers2"   : {
+            "Type" : "AWS::EC2::Instance",
+            "Metadata" : {
+                "AWS::CloudFormation::Init" : {
+                    "config" : {
+                        "commands" : {
+                            "00-set-aspnet-env"  : {
+                                "command" : "setx ASPNET_ENV ProductionIIS /M",
+                                "ignoreErrors" : "true",
+                                "waitAfterCompletion" : 0
+                            },
+                            "01-import-service-module"  : {
+                                "command" : "powershell.exe -Command Import-Module -Name ServerManager",
+                                "ignoreErrors" : "true",
+                                "waitAfterCompletion" : 0
+                            },
+                            "02-install-web-server"  : {
+                                "command" : "powershell.exe -Command Install-WindowsFeature Web-Server,Application-Server,AS-Web-Support",
+                                "ignoreErrors" : "true",
+                                "waitAfterCompletion" : 0
+                            },
+                            "03-download-host-agent" : {
+                                "command" : {
+                                    "Fn::Join" : [
+                                        "",
+                                        [
+                                            "powershell.exe -Command \"Read-S3Object ",
+                                            "-BucketName aws-codedeploy-us-east-1 ",
+                                            "-Key latest/codedeploy-agent.msi ",
+                                            "-File codedeploy-agent.msi\""
+                                        ]
+                                    ]
+                                },
+                                "cwd"     : "C:/cfn",
+                                "waitAfterCompletion" : 0
+                            },
+                            "04-install-host-agent"  : {
+                                "command" : "C:\\cfn\\codedeploy-agent.msi /quiet /l C:\\cfn\\host-agent-install-log.txt",
+                                "ignoreErrors" : "true",
+                                "waitAfterCompletion" : 0
+                            },
+                            "05-signal-ready"        : {
+                                "command" : {
+                                    "Fn::Join" : [
+                                        "",
+                                        [
+                                            "\"C:\\Program Files\\Amazon\\cfn-bootstrap\\cfn-signal\"",
+                                            " -e 0 \"",
+                                            {
+                                                "Ref" : "WaitHandle"
+                                            },
+                                            "\""
+                                        ]
+                                    ]
+                                },
+                                "waitAfterCompletion" : 0
+                            }                        
+						},
+                        "services" : {
+                            "windows" : {
+                                "codedeploy-agent" : {
+                                    "enabled" : "true",
+                                    "ensureRunning" : "true",
+                                    "commands"      : [
+                                        "01-install-host-agent"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Properties" : {
+                "IamInstanceProfile" : {
+                    "Ref" : "InstanceRoleInstanceProfile"
+                },
+                "ImageId"            : {
+                    "Ref" : "ImageId"
+                },
+                "InstanceType"       : {
+                    "Ref" : "InstanceType"
+                },
+                "KeyName"            : {
+                    "Ref" : "EC2KeyName"
+                },
+                "SecurityGroups"     : [
+                    {
+                        "Ref" : "AppSecurity"
+                    }
+                ],
+                "Tags"               : [
+                    {
+                        "Key" : "Application",
+                        "Value" : "Pollster-CodeDeploy"
+                    }
+                ],
+                "UserData"           : {
+                    "Fn::Base64" : {
+                        "Fn::Join" : [
+                            "",
+                            [
+                                "<script>\n",
+                                "mkdir c:\\cfn\n",
+                                "mkdir c:\\cfn\\log\n",
+                                "c:\\\"Program Files\"\\Amazon\\cfn-bootstrap\\cfn-init.exe -s ",
+                                {
+                                    "Ref" : "AWS::StackName"
+                                },
+                                " --region ",
+                                {
+                                    "Ref" : "AWS::Region"
+                                },
+                                " -r AppServers2 > c:\\cfn\\log\\cfn-call-log 2>&1",
+                                "</script>"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "LoadBalancer"  : {
+            "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
+            "Properties" : {
+                "AvailabilityZones" : {
+                    "Fn::GetAZs" : ""
+                },
+                "Listeners"         : [
+                    {
+                        "Protocol" : "HTTP",
+                        "InstanceProtocol" : "HTTP",
+                        "InstancePort"     : "80",
+                        "LoadBalancerPort" : "80"
+                    }
+                ],
+                "Instances"         : [
+                    {
+                        "Ref" : "AppServers1"
+                    },
+                    {
+                        "Ref" : "AppServers2"
+                    }
+                ],
+                "HealthCheck"       : {
+                    "Timeout" : "5",
+                    "Interval" : "10",
+                    "Target"   : "TCP:80",
+                    "HealthyThreshold" : "3",
+                    "UnhealthyThreshold" : "5"
+                },
+                "ConnectionDrainingPolicy" : {
+                    "Enabled" : true,
+                    "Timeout" : 20
+                },
+                "Tags"                     : [
+                    {
+                        "Key" : "Application",
+                        "Value" : "Pollster-CodeDeploy"
+                    }
+                ]
+            }
+        },
+        "CodeDeployTrustRole" : {
+            "Type" : "AWS::IAM::Role",
+            "Properties" : {
+                "AssumeRolePolicyDocument" : {
+                    "Statement" : [
+                        {
+                            "Sid" : "1",
+                            "Effect" : "Allow",
+                            "Principal" : {
+                                "Service" : [
+                                    "codedeploy.us-east-1.amazonaws.com",
+                                    "codedeploy.us-west-2.amazonaws.com"
+                                ]
+                            },
+                            "Action"    : "sts:AssumeRole"
+                        }
+                    ]
+                },
+                "Path"                     : "/"
+            }
+        },
+        "CodeDeployRolePolicies" : {
+            "Type" : "AWS::IAM::Policy",
+            "Properties" : {
+                "PolicyName" : "CodeDeployPolicy",
+                "PolicyDocument" : {
+                    "Statement" : [
+                        {
+                            "Effect" : "Allow",
+                            "Resource" : [
+                                "*"
+                            ],
+                            "Action"   : [
+                                "ec2:Describe*"
+                            ]
+                        },
+                        {
+                            "Effect" : "Allow",
+                            "Resource" : [
+                                "*"
+                            ],
+                            "Action"   : [
+                                "autoscaling:CompleteLifecycleAction",
+                                "autoscaling:DeleteLifecycleHook",
+                                "autoscaling:DescribeLifecycleHooks",
+                                "autoscaling:DescribeAutoScalingGroups",
+                                "autoscaling:PutLifecycleHook",
+                                "autoscaling:RecordLifecycleActionHeartbeat"
+                            ]
+                        }
+                    ]
+                },
+                "Roles"          : [
+                    {
+                        "Ref" : "CodeDeployTrustRole"
+                    }
+                ]
+            }
+        },
+        "InstanceRole"           : {
+            "Type" : "AWS::IAM::Role",
+            "Properties" : {
+                "AssumeRolePolicyDocument" : {
+                    "Statement" : [
+                        {
+                            "Effect" : "Allow",
+                            "Principal" : {
+                                "Service" : [
+                                    "ec2.amazonaws.com"
+                                ]
+                            },
+                            "Action"    : [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path"                     : "/"
+            }
+        },
+        "InstanceRolePolicies"   : {
+            "Type" : "AWS::IAM::Policy",
+            "Properties" : {
+                "PolicyName" : "InstanceRole",
+                "PolicyDocument" : {
+                    "Statement" : [
+                        {
+                            "Effect" : "Allow",
+                            "Action" : [
+                                "autoscaling:Describe*",
+                                "cloudformation:Describe*",
+                                "cloudformation:GetTemplate",
+                                "s3:Get*"
+                            ],
+                            "Resource" : "*"
+                        },
+                        {
+                            "Effect" : "Allow",
+                            "Action" : [
+                                "dynamodb:*",
+                                "swf:*",
+                                "sns:*",
+                                "logs:*"
+                            ],
+                            "Resource" : "*"
+                        }
+                    ]
+                },
+                "Roles"          : [
+                    {
+                        "Ref" : "InstanceRole"
+                    }
+                ]
+            }
+        },
+        "InstanceRoleInstanceProfile" : {
+            "Type" : "AWS::IAM::InstanceProfile",
+            "Properties" : {
+                "Path" : "/",
+                "Roles" : [
+                    {
+                        "Ref" : "InstanceRole"
+                    }
+                ]
+            }
+        }
+    },
+    "Outputs"                  : {
+        "LoadBalancerDNSName" : {
+            "Value" : {
+                "Fn::GetAtt" : [
+                    "LoadBalancer",
+                    "DNSName"
+                ]
+            }
+        },
+        "CodeDeployTrustRoleARN" : {
+            "Value" : {
+                "Fn::GetAtt" : [
+                    "CodeDeployTrustRole",
+                    "Arn"
+                ]
+            }
+        }
+    }
+}

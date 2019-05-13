@@ -1,0 +1,70 @@
+﻿@model PollCreatorViewModel
+
+@{
+
+    ViewData["Title"] = "Create Poll";
+}
+
+
+<div class="borderedpanel">
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <h2>Create a Poll</h2>
+
+            <div class="pollform">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AuthorEmail, "Email")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.AuthorEmail)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Title)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Title)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Question)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Question, new { style = "width:500px;" })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Options, "Poll Options")
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Options, new { style = "width:500px;", rows = "10" })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.StartTime, "Starts At")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBox("StartDate", Model.StartDate.ToString("MM/dd/yyyy"), new { @class = "date" })
+                    @Html.TextBox("StartTime", Model.StartTime.ToString("HH:mm"))
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EndTime, "Ends At")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBox("EndDate", Model.EndDate.ToString("MM/dd/yyyy"), new { @class = "date" })
+                    @Html.TextBox("EndTime", Model.EndTime.ToString("HH:mm"))
+                </div>
+
+                <input type="submit" value="Create Poll" class="pollcreate" />
+            </div>
+        </fieldset>
+    }
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.date').datepicker({ dateFormat: "dd/mm/yy" });
+    });
+</script>

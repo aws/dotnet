@@ -1,0 +1,16 @@
+{
+    "Version" : "2012-10-17",
+    "Statement" : [
+        {
+            "Sid" : "d8ac05b0de504f24bfd35b0080421ce4",
+            "Effect" : "Allow",
+            "Action" : [
+                "dynamodb:*",
+                "swf:*",
+				"sns:*",
+                "logs:*"
+            ],
+            "Resource" : "*"
+        }
+    ]
+}

@@ -1,0 +1,94 @@
+{
+	"AWSEBDockerrunVersion": 2,
+	"containerDefinitions": [
+		{
+			"name": "pollfeed",
+			"image": "awsdotnet/pollfeed:beta-7a",
+			"essential": true,
+			"memory": 2048,
+			"environment": [
+				{
+					"name": "ASPNET_ENV",
+					"value": "ElasticBeanstalk-Docker"
+				}
+			],
+			"portMappings": [
+				{
+					"hostPort": 5002,
+					"containerPort": 5002
+				}
+			]
+		},
+		{
+			"name": "pollvoter",
+			"image": "awsdotnet/pollvoter:beta-7a",
+			"essential": true,
+			"memory": 1024,
+			"environment": [
+				{
+					"name": "ASPNET_ENV",
+					"value": "ElasticBeanstalk-Docker"
+				}
+			],
+			"portMappings": [
+				{
+					"hostPort": 5003,
+					"containerPort": 5003
+				}
+			]
+		},
+		{
+			"name": "pollwebfrontend",
+			"image": "awsdotnet/pollwebfrontend:beta-7a",
+			"essential": true,
+			"memory": 3072,
+			"environment": [
+				{
+					"name": "ASPNET_ENV",
+					"value": "ElasticBeanstalk-Docker"
+				}
+			],
+			"links" : [
+				"pollfeed",
+				"pollvoter",
+				"pollwriter"
+			],
+			"portMappings": [
+				{
+					"hostPort": 80,
+					"containerPort": 5000
+				}
+			]
+		},		
+		{
+			"name": "pollworkflow",
+			"image": "awsdotnet/pollworkflow:beta-7a",
+			"essential": true,
+			"memory": 128,
+			"environment": [
+				{
+					"name": "ASPNET_ENV",
+					"value": "ElasticBeanstalk-Docker"
+				}
+			]
+		},
+		{
+			"name": "pollwriter",
+			"image": "awsdotnet/pollwriter:beta-7a",
+			"essential": true,
+			"memory": 512,
+			"environment": [
+				{
+					"name": "ASPNET_ENV",
+					"value": "ElasticBeanstalk-Docker"
+				}
+			],
+			"portMappings": [
+				{
+					"hostPort": 5001,
+					"containerPort": 5001
+				}
+			]
+		}		
+    ]
+}

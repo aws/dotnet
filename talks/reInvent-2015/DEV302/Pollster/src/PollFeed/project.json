@@ -1,0 +1,45 @@
+{
+  "webroot": "wwwroot",
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Microsoft.AspNet.Mvc": "6.0.0-beta7",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta7",
+    "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta7",
+    "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta7",
+    "Microsoft.Framework.Configuration.CommandLine": "1.0.0-beta7",
+    "Microsoft.Framework.Configuration.Json": "1.0.0-beta7",
+    "CommonCode": "1.0.0-*",
+    "AWSSDK.Core": "3.2.0-beta",
+    "AWSSDK.DynamoDBv2": "3.2.0-beta",
+    "PollsterDeploymentCommands": { "version": "1.0.0-*", "type": "build" }
+  },
+
+  "commands": {
+    "kestrel": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --config hosting.ini",
+
+    "publish-only": "PollsterDeploymentCommands publish-only",
+    "deploy-codedeploy": "PollsterDeploymentCommands codedeploy",
+    "ecs-task-update": "PollsterDeploymentCommands ecs-task-update"
+
+  },
+
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": { }
+  },
+
+  "exclude": [
+    "wwwroot",
+    "node_modules",
+    "bower_components"
+  ],
+  "publishExclude": [
+    "node_modules",
+    "bower_components",
+    "**.xproj",
+    "**.user",
+    "**.vspscc"
+  ]
+}

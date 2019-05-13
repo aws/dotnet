@@ -1,0 +1,101 @@
+﻿[
+  {
+    "authorEmail": "normj@amazon.com",
+    "title": "Star Wars Hero",
+    "question": "Who is the hero of Star Wars?",
+    "options": {
+      "luke": {
+        "text": "Luke",
+        "votes": 0
+      },
+      "han": {
+        "text": "Han",
+        "votes": 0
+      },
+      "leia": {
+        "text": "Leia",
+        "votes": 0
+      },
+      "r2d2": {
+        "text": "R2-D2",
+        "votes": 0
+      },
+      "c3po": {
+        "text": "C-3PO",
+        "votes": 0
+      },
+      "chewbacca": {
+        "text": "Chewbacca",
+        "votes": 0
+      }
+    },
+    "startTime": "2017-05-28T07:25:49.1760614Z",
+    "endTime": "2017-05-28T10:55:54.1760614Z"
+  },
+  {
+    "authorEmail": "normj@amazon.com",
+    "title": "Development Platform",
+    "question": "What is your development platform?",
+    "options": {
+      "windows": {
+        "text": "Windows / VIsual Studio",
+        "votes": 0
+      },
+      "mac": {
+        "text": "Mac OS / Visual Studio Code",
+        "votes": 0
+      },
+      "linux": {
+        "text": "Linux / VIM",
+        "votes": 0
+      }
+    },
+    "startTime": "2017-05-28T07:25:49.1760614Z",
+    "endTime": "2017-05-28T10:55:54.1760614Z"
+  },
+  {
+    "authorEmail": "normj@amazon.com",
+    "title": "Norway Visit",
+    "question": "Where should Norm go in Norway?",
+    "options": {
+      "Bergen": {
+        "text": "Bergen",
+        "votes": 0
+      },
+      "TheGeirangerfjordArea": {
+        "text": "The Geirangerfjord area",
+        "votes": 0
+      },
+      "Flåm": {
+        "text": "Flåm",
+        "votes": 0
+      },
+      "AurlandsdalenValley": {
+        "text": "Aurlandsdalen Valley",
+        "votes": 0
+      },
+      "TheÅlesundAndSunnmøreArea": {
+        "text": "The Ålesund and Sunnmøre area",
+        "votes": 0
+      },
+      "Ryfylke": {
+        "text": "Ryfylke",
+        "votes": 0
+      },
+      "TheSognefjordArea": {
+        "text": "The Sognefjord area",
+        "votes": 0
+      },
+      "Voss": {
+        "text": "Voss",
+        "votes": 0
+      },
+      "TheHardangerfjord": {
+        "text": "The Hardangerfjord",
+        "votes": 0
+      }
+    },
+    "startTime": "2017-05-28T07:25:49.1760614Z",
+    "endTime": "2017-05-28T10:55:54.1760614Z"
+  }
+]

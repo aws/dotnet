@@ -1,0 +1,1 @@
+﻿C:\Windows\SysNative\WindowsPowerShell\v1.0\powershell.exe -Command {New-WebApplication -Site "Default Web Site" -Name PollVoter -PhysicalPath  c:\inetpub\wwwroot\PollVoter\wwwroot -Force}

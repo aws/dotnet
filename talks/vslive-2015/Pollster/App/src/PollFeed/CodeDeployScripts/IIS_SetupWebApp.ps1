@@ -1,0 +1,1 @@
+﻿C:\Windows\SysNative\WindowsPowerShell\v1.0\powershell.exe -Command {New-WebApplication -Site "Default Web Site" -Name PollFeed -PhysicalPath  c:\inetpub\wwwroot\PollFeed\wwwroot -Force}

@@ -1,0 +1,8 @@
+version: 0.0
+os: windows
+hooks:
+  ApplicationStop:
+    - location: .\approot\src\PollWorkflow\CodeDeployScripts\BatchStopper.ps1
+  ApplicationStart:
+    - location: .\approot\src\PollWorkflow\CodeDeployScripts\BatchStarter.ps1
+      timeout: 180

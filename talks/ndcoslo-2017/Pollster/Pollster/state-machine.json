@@ -1,0 +1,31 @@
+{
+  "Comment": "State machine for the polls lifecycle",
+  "StartAt": "Schedule",
+  "States": {
+    "Schedule": {
+      "Type": "Task",
+      "Resource": "${ScheduleTask.Arn}",
+      "Next": "WaitToActivate"
+    },
+    "WaitToActivate": {
+      "Type": "Wait",
+      "SecondsPath": "$.SecondsTillActive",
+      "Next": "Activate"
+    },
+    "Activate": {
+      "Type": "Task",
+      "Resource": "${ActivateTask.Arn}",
+      "Next": "WaitToDeactivate"
+    },
+    "WaitToDeactivate": {
+      "Type": "Wait",
+      "SecondsPath": "$.SecondsTillDeactivate",
+      "Next": "Deactivate"
+    },
+    "Deactivate": {
+      "Type": "Task",
+      "Resource": "${DeactivateTask.Arn}",
+      "End": true
+    }
+  }
+}

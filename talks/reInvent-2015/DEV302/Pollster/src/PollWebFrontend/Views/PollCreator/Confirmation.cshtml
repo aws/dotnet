@@ -1,0 +1,18 @@
+﻿@model PollConfirmationViewModel
+
+@{
+
+    ViewData["Title"] = "Poll Created";
+}
+
+@if (Model.Success)
+{
+    <h2>Poll Created!!!</h2>
+
+    <text>Your poll <b>@(Model.Title)</b> has been created and scheduled to go live at <b>@(Model.StartTime)</b> till <b>@(Model.EndTime)</b>.</text>
+}
+else {
+    <h2>Poll failed to be created!!!</h2>
+
+    <text>Error Message: @(Model.ErrorMessage)</text>
+}

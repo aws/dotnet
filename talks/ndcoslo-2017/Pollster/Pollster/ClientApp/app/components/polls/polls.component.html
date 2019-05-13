@@ -1,0 +1,17 @@
+
+<p *ngIf="!polls"><em>Loading...</em></p>
+
+<div *ngIf="polls">
+
+    <div *ngFor="let poll of polls">
+        <h2>{{ poll.title }}</h2>
+        <div class="pollquestion">{{ poll.question }}</div>
+        <ul id="{{ poll.id }}">
+            <li class="polloption" *ngFor="let keyValuePair of poll.options | keyValueFilter">
+                <input type="radio" name="{{ poll.id }}" value="{{ keyValuePair.key }}" />&nbsp;{{ keyValuePair.value.text }}
+            </li>
+        </ul>
+        <button id="{{ poll.id }}" (click)="submitVote(poll.id)">Vote!</button>
+        <footer>Active till {{poll.endTime | date:'medium'}}</footer>
+    </div>
+</div>

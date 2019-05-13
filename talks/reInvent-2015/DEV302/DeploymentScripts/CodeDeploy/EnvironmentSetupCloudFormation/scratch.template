@@ -1,0 +1,43 @@
+﻿{
+	"AWSTemplateFormatVersion" : "2010-09-09",
+
+	"Description" : "",
+
+	"Parameters" : {
+       "OpenRemoteDesktopPort" : {
+            "Type" : "String",
+            "AllowedValues" : ["Yes", "No"]
+        }
+	},
+
+    "Conditions" : {
+		"OpenRemoteDesktopPortCondition" : {"Fn::Equals" : ["Yes", { "Ref" : "OpenRemoteDesktopPort" }]}
+	},
+
+	"Resources" : {
+
+		"AppSecurity" : {
+		    "Type" : "AWS::EC2::SecurityGroup",
+		    "Properties" : {
+				"GroupDescription" : "The security group for the application servers",
+				"SecurityGroupIngress" : [
+					{
+						"CidrIp" : "0.0.0.0/0",
+                        "IpProtocol" : "tcp",
+                        "FromPort" : "80",
+                        "ToPort" : "80"
+					},
+                    {
+						"CidrIp" : {"Fn::If" : ["OpenRemoteDesktopPortCondition", "0.0.0.0/0", "0.0.0.0/32"] },
+                        "IpProtocol" : "tcp",
+                        "FromPort" : "3389",
+                        "ToPort" : "3389"						
+					}
+				]
+		    }
+		}
+	},
+
+	"Outputs" : {
+	}
+}

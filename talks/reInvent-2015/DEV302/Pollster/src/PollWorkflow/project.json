@@ -1,0 +1,38 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "PollWorkflow Console Application",
+  "authors": [ "Norm" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "Microsoft.AspNet.Hosting.Abstractions" :  "1.0.0-beta7",
+    "CommonCode": "1.0.0-*",
+    "AWSSDK.Core": "3.2.0.0-beta",
+    "AWSSDK.DynamoDBv2": "3.2.0-beta",
+    "AWSSDK.SimpleWorkflow": "3.2.0.0-beta",
+    "AWSSDK.CloudWatchLogs": "3.2.0.0-beta",
+    "AWSSDK.SimpleNotificationService": "3.2.0.0-beta",
+    "PollsterDeploymentCommands": "1.0.0-*"
+  },
+
+  "commands": {
+    "PollWorkflow": "PollWorkflow",
+
+    "publish-only": "PollsterDeploymentCommands publish-only",
+    "deploy-codedeploy": "PollsterDeploymentCommands codedeploy",
+    "ecs-task-update": "PollsterDeploymentCommands ecs-task-update"
+
+  },
+
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": {
+      "dependencies": {
+        "System.Console": "4.0.0-beta-23123",
+        "System.Diagnostics.Process" : "4.0.0-beta-23123"
+      }
+    }
+  }
+}

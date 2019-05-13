@@ -1,0 +1,48 @@
+{
+    "version": "1.0.0-*",
+    "description": "PollsterDeploymentCommands Console Application",
+    "authors": [
+        "Norm"
+    ],
+    "tags": [
+        ""
+    ],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "dependencies": {
+        "AWSSDK.CodeDeploy": "3.2.0.0-beta",
+        "AWSSDK.ECS": "3.2.0.0-beta",
+        "AWSSDK.S3": "3.2.0.0-beta",
+        "CommonCode": "1.0.0-*",
+        "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-beta8",
+        "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta8",
+        "Microsoft.Framework.Configuration.CommandLine": "1.0.0-beta8",
+        "Microsoft.Framework.Configuration.Json": "1.0.0-beta8",
+        "Microsoft.Framework.Configuration.UserSecrets": "1.0.0-beta8",
+        "Microsoft.Framework.DependencyInjection": "1.0.0-beta8",
+        "Microsoft.Framework.DependencyInjection.Abstractions": "1.0.0-beta8"
+    },
+    "commands": {
+        " PollsterDeploymentCommands": "PollsterDeploymentCommands"
+    },
+    "frameworks": {
+        "dnx451": {
+            "frameworkAssemblies": {
+                "System.IO.Compression": "4.0.0.0",
+                "System.IO.Compression.FileSystem": "4.0.0.0"
+            }
+        },
+        "dnxcore50": {
+            "dependencies": {
+                "Microsoft.CSharp": "4.0.1-beta-23409",
+                "System.Collections": "4.0.10-beta-23109",
+                "System.Console": "4.0.0-beta-23409",
+                "System.Diagnostics.Process": "4.0.0-beta-23225",
+                "System.IO.Compression": "4.0.0",
+                "System.IO.Compression.ZipFile": "4.0.0",
+                "System.Linq": "4.0.0-beta-23109",
+                "System.Threading": "4.0.10-beta-23109"
+            }
+        }
+    }
+}

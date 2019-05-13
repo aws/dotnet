@@ -1,0 +1,7 @@
+﻿{
+  "WebAPIs": {
+    "PollWriterAPI": "http://localhost:5001/",
+    "PollFeedAPI": "http://localhost:5002/",
+    "PollVoterAPI": "http://localhost:5003/"
+  }
+}
