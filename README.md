@@ -74,12 +74,11 @@ AWS X-Ray helps developers analyze and debug distributed applications. With X-Ra
 ## .NET Development Tools
 [AWS Toolkit for Visual Studio 2017 and 2019](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.AWSToolkitforVisualStudio2017.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.AWSToolkitforVisualStudio2017.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)    
-The AWS Toolkit for Visual Studio 2017 is an extension for Microsoft Visual Studio 2017 on Microsoft Windows that makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services. 
+The AWS Toolkit for Visual Studio 2017 and 2019 is an extension for Microsoft Visual Studio 2017 and 2019 on Microsoft Windows. The toolkit makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services. 
 
-[AWS Toolkit for Visual Studio Code - Preview](https://github.com/aws/aws-toolkit-vscode)  
+[AWS Toolkit for Visual Studio Code](https://github.com/aws/aws-toolkit-vscode)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.aws-toolkit-vscode.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-toolkit-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-toolkit-vscode)  
-The AWS Toolkit for Visual Studio Code is an extension for working with AWS services such as AWS Lambda.
-The toolkit is in preview and only available if built from source. This is pre-release software and we recommend against using it in a production environment.
+The AWS Toolkit for Visual Studio Code is a Visual Studio Code extension for working with AWS services such as AWS Lambda.
 
 [AWS Tools for Microsoft Visual Studio Team Services (VSTS)](https://github.com/aws/aws-vsts-tools)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.aws-vsts-tools.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-vsts-tools.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)    
