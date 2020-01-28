@@ -110,7 +110,7 @@ Amazon Web Services offers Amazon Machine Images (AMI) with .NET Core on Amazon 
 This repository holds Dockerfiles of official AWS CodeBuild curated Docker images. Please refer to the [AWS CodeBuild User Guide](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html) for list of environments supported by AWS CodeBuild.
 
 ## Documentation
-[AWS .NET Developer Guide](https://github.com/awsdocs/aws-net-developer-guide)  
+[AWS .NET Developer Guide](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide)  
 The AWS SDK for .NET Developer Guide describes how to implement applications for AWS using the AWS SDK for .NET
 
 [AWS SDK for .NET V3 API Reference](https://docs.aws.amazon.com/sdkfornet/v3/apidocs/Index.html)  
