@@ -74,13 +74,17 @@ AWS X-Ray helps developers analyze and debug distributed applications. With X-Ra
 ## .NET Development Tools
 [AWS Toolkit for Visual Studio 2017 and 2019](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.AWSToolkitforVisualStudio2017.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.AWSToolkitforVisualStudio2017.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)    
-The AWS Toolkit for Visual Studio 2017 and 2019 is an extension for Microsoft Visual Studio 2017 and 2019 on Microsoft Windows. The toolkit makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services. 
+The AWS Toolkit for Visual Studio 2017 and 2019 is an extension for Microsoft Visual Studio 2017 and 2019 on Microsoft Windows. The toolkit makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services.
+
+[AWS Toolkit for Rider](https://github.com/aws/aws-toolkit-jetbrains)  
+[![JetBrains Marketplace](https://img.shields.io/jetbrains/plugin/v/11349-aws-toolkit.svg?label=version) ![downloads](https://img.shields.io/jetbrains/plugin/d/11349-aws-toolkit)](https://plugins.jetbrains.com/plugin/11349-aws-toolkit)  
+The AWS Toolkit for Jetbrains is an extension for JetBrains IDEs (e.g. Rider, IntelliJ IDEA, PyCharm) that lets you work with AWS services such as AWS Lambda.
 
 [AWS Toolkit for Visual Studio Code](https://github.com/aws/aws-toolkit-vscode)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.aws-toolkit-vscode.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-toolkit-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-toolkit-vscode)  
 The AWS Toolkit for Visual Studio Code is a VS Code extension that lets you work with AWS services such as AWS Lambda.
 
-[AWS Tools for Microsoft Visual Studio Team Services (VSTS)](https://github.com/aws/aws-vsts-tools)  
+[AWS Tools for Azure DevOps](https://github.com/aws/aws-vsts-tools)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.aws-vsts-tools.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-vsts-tools.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)    
 Tasks for Amazon S3, AWS Elastic Beanstalk, AWS CodeDeploy, AWS Lambda and AWS CloudFormation and more, and running commands in the AWS Tools for Windows PowerShell module and the AWS CLI.
 
