@@ -76,9 +76,9 @@ AWS X-Ray helps developers analyze and debug distributed applications. With X-Ra
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.AWSToolkitforVisualStudio2017.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.AWSToolkitforVisualStudio2017.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)    
 The AWS Toolkit for Visual Studio 2017 and 2019 is an extension for Microsoft Visual Studio 2017 and 2019 on Microsoft Windows. The toolkit makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services.
 
-[AWS Toolkit for Rider](https://github.com/aws/aws-toolkit-jetbrains)  
+[AWS Toolkit for JetBrains](https://github.com/aws/aws-toolkit-jetbrains)  
 [![JetBrains Marketplace](https://img.shields.io/jetbrains/plugin/v/11349-aws-toolkit.svg?label=version) ![downloads](https://img.shields.io/jetbrains/plugin/d/11349-aws-toolkit)](https://plugins.jetbrains.com/plugin/11349-aws-toolkit)  
-The AWS Toolkit for Jetbrains is an extension for JetBrains IDEs (e.g. Rider, IntelliJ IDEA, PyCharm) that lets you work with AWS services such as AWS Lambda.
+The AWS Toolkit for JetBrains works with Rider and adds support for working with AWS services such as AWS Lambda and S3.
 
 [AWS Toolkit for Visual Studio Code](https://github.com/aws/aws-toolkit-vscode)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.aws-toolkit-vscode.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-toolkit-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-toolkit-vscode)  
