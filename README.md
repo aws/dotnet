@@ -84,7 +84,7 @@ The AWS Toolkit for JetBrains works with Rider and adds support for working with
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.aws-toolkit-vscode.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-toolkit-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-toolkit-vscode)  
 The AWS Toolkit for Visual Studio Code is a VS Code extension that lets you work with AWS services such as AWS Lambda.
 
-[AWS Tools for Azure DevOps](https://github.com/aws/aws-vsts-tools)  
+[AWS Toolkit for Azure DevOps](https://github.com/aws/aws-vsts-tools)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.aws-vsts-tools.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.aws-vsts-tools.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools)    
 Tasks for Amazon S3, AWS Elastic Beanstalk, AWS CodeDeploy, AWS Lambda and AWS CloudFormation and more, and running commands in the AWS Tools for Windows PowerShell module and the AWS CLI.
 
