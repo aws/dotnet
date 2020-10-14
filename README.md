@@ -71,6 +71,10 @@ DynamoDB Accelerator (DAX) for Microsoft .NET -- DAX is a fully managed, in-memo
 [AWS X-Ray SDK for .NET](https://github.com/aws/aws-xray-sdk-dotnet)  
 AWS X-Ray helps developers analyze and debug distributed applications. With X-Ray, you can understand how your application and its underlying services are performing to identify and troubleshoot the root cause of performance issues and errors.
 
+[Amazon S3 Encryption Client for .NET](https://github.com/aws/amazon-s3-encryption-client-dotnet)  
+[![nuget](https://img.shields.io/nuget/v/Amazon.Extensions.S3.Encryption.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Extensions.S3.Encryption.svg)](https://www.nuget.org/packages/Amazon.Extensions.S3.Encryption/)  
+Amazon S3 Encryption Client for .NET is a client-side encryption library designed to make it easy for everyone to encrypt and decrypt data using industry standards and best practices. It enables you to focus on the core functionality of your application, rather than on how to best encrypt and decrypt your data.
+
 ## .NET Development Tools
 [AWS Toolkit for Visual Studio 2017 and 2019](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.AWSToolkitforVisualStudio2017.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.AWSToolkitforVisualStudio2017.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)    
