@@ -64,7 +64,7 @@ AWS Systems Manager ASP.NET Core Data Protection Provider library allows you to 
 [![nuget](https://img.shields.io/nuget/v/Amazon.Lambda.RuntimeSupport.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Lambda.RuntimeSupport.svg)](https://www.nuget.org/packages/Amazon.Lambda.RuntimeSupport/)  
  Amazon.Lambda.RuntimeSupport library makes it easy to create Lambda functions using .NET standard 2.0-compatible runtimes.
 
-[DynamoDB Accelerator (DAX) for Microsoft .NET](https://aws.amazon.com/dynamodb/dax/)  
+[DynamoDB Accelerator (DAX) for Microsoft .NET](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.client.run-application-dotnet.html)  
 [![nuget](https://img.shields.io/nuget/v/AWSSDK.DAX.Client.svg) ![downloads](https://img.shields.io/nuget/dt/AWSSDK.DAX.Client.svg)](https://www.nuget.org/packages/AWSSDK.DAX.Client/)  
 DynamoDB Accelerator (DAX) for Microsoft .NET -- DAX is a fully managed, in-memory cache for DynamoDB.
 
