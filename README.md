@@ -108,6 +108,10 @@ The AWS Lambda Tools for Powershell can be used to create and deploy AWS Lambda 
 [![nuget](https://img.shields.io/nuget/v/Amazon.Lambda.Tools.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Lambda.Tools.svg)](https://www.nuget.org/packages/Amazon.Lambda.Tools/)  
 This repository contains AWS tool extensions to the .NET CLI. These tool extensions are focused on building .NET Core and ASP.NET Core applications and deploying them to AWS services. Many of these deployment commands are the same commands the AWS Toolkit for Visual Studio uses to perform its deployment features. 
 
+[AWS .NET deployment tool](https://github.com/aws/aws-dotnet-deploy)  
+[![nuget](https://img.shields.io/nuget/v/AWS.Deploy.CLI.svg) ![downloads](https://img.shields.io/nuget/dt/AWS.Deploy.CLI.svg)](https://www.nuget.org/packages/AWS.Deploy.CLI/)  
+This repository contains the AWS .NET deployment tool for .NET CLI - the opinionated tooling that simplifies deployment of .NET applications with minimum AWS knowledge. The tool suggests the right AWS compute service to deploy your application to. It then builds and packages your application as required by the chosen compute service, generates the deployment infrastructure, deploys your application by using the Cloud Development Kit (CDK), and displays the endpoint. 
+
 ## AWS Cloud Resources for .NET
 
 [.NET Core EC2 AMIs](https://aws.amazon.com/about-aws/whats-new/2018/03/announcing--net-core-ami-for-amazon-ec2/)  
