@@ -79,6 +79,10 @@ AWS X-Ray helps developers analyze and debug distributed applications. With X-Ra
 Amazon S3 Encryption Client for .NET is a client-side encryption library designed to make it easy for everyone to encrypt and decrypt data using industry standards and best practices. It enables you to focus on the core functionality of your application, rather than on how to best encrypt and decrypt your data.
 
 ## .NET Development Tools
+[AWS Toolkit for Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2022)  
+[![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.AWSToolkitforVisualStudio2022.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.AWSToolkitforVisualStudio2022.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2022)    
+The AWS Toolkit for Visual Studio 2022 is an extension for Microsoft Visual Studio 2022 on Microsoft Windows. The toolkit makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services.
+
 [AWS Toolkit for Visual Studio 2017 and 2019](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.AWSToolkitforVisualStudio2017.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.AWSToolkitforVisualStudio2017.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)    
 The AWS Toolkit for Visual Studio 2017 and 2019 is an extension for Microsoft Visual Studio 2017 and 2019 on Microsoft Windows. The toolkit makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services.
