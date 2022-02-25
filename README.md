@@ -17,9 +17,6 @@ Find all the .NET code samples, step-by-step guides, videos, blog content, tools
 [AWS Developer Blog - .NET](https://aws.amazon.com/blogs/developer/category/programing-language/dot-net/)  
 Come see what .NET developers at AWS are up to!  Learn about new .NET software announcements, guides, and how-to's.
 
-[.NET 6 support on AWS Guide](https://github.com/aws-samples/aws-net-guides/tree/master/RuntimeSupport/dotnet6)  
-The guide provides the latest information about the status of AWS services and tools that have either been updated, or are being updated, to provide .NET 6 support.
-
 [@dotnetonaws](https://twitter.com/dotnetonaws)  
 Follow us on Twitter!
 
