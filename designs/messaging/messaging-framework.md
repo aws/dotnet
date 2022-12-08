@@ -2,18 +2,33 @@
 
 The AWS SDK for .NET team provides tools and libraries that simplify application development for .NET developers and help them apply the best development practices from the start.
 
-Our research shows that **message processing applications** are one of the most common application type. One typical scenario is using SQS in combination with SNS to create a publish-subscribe framework, where REST APIs publish messages to the topics and queues, and backend services act as subscribers pulling and processing messages. The current experience requires developers to use .NET SDK low level service APIs, which can become quite cumbersome. To solve this problem, several customers have created their own frameworks, but they are not supported by AWS, which is a concern for many of our customers. 
+Our research shows that **message processing applications** are one of the most common application types. One typical scenario is using SQS in combination with SNS to create a publish-subscribe framework, where REST APIs publish messages to the topics and queues, and backend services act as subscribers pulling and processing messages. The current experience requires developers to use .NET SDK low level service APIs, which can become quite cumbersome.
 
 To address this issue, we are proposing an **AWS native framework that simplifies development of .NET message processing applications using AWS services.**
 
 The purpose of the framework is to reduce the amount of boiler-plate code developers need to write. The primary responsibilities of the proposed framework are: 
 
 - **Handling the message routing** - In a publisher, the framework will handle routing the messages to the correct queue/topic/eventbus. In a consumer process, it will route the particular message type to the appropriate business logic.
-- **Handling the overall message lifecycle**  - The framework will handle serializing/deserializing the message to .NET objects, keeping track of the message visibility while it is being processed, and deleting the message when completed.
+- **Handling the overall message lifecycle** - The framework will handle serializing/deserializing the message to .NET objects, keeping track of the message visibility while it is being processed, and deleting the message when completed.
+
+
+***Note**: There are powerful community driven libraries already available to the .NET community like [MassTransit](https://masstransit-project.com/), [Dapr](https://dapr.io/), [NServiceBus](https://github.com/Particular/NServiceBus.AmazonSQS), and others. Unlike those products, our proposed framework will take hard dependencies on AWS services and is mostly focused on customers that desire AWS support and are not looking for cloud-agnostic solutions. Its intent is to provide a lighter abstraction of our existing low-level APIs and potentially expose AWS features through public API. If your application requirements are to be agnostic of the underlying messaging services then the other libraries would be a better fit.*
+
+*Community Frameworks (that we know of):*
+
+* [*https://github.com/justeat/JustSaying*](https://github.com/justeat/JustSaying)
+* [*https://masstransit-project.com/*](https://masstransit-project.com/)
+* [*https://dapr.io/*](https://dapr.io/)
+* [*https://github.com/dotnetcloud/SqsToolbox*](https://github.com/dotnetcloud/SqsToolbox)
+* [*https://github.com/nwestfall/MessageDelivery*](https://github.com/nwestfall/MessageDelivery)
+* [*https://github.com/BrighterCommand/Brighter*](https://github.com/BrighterCommand/Brighter)
+* [*https://github.com/Particular/NServiceBus.AmazonSQS*](https://github.com/Particular/NServiceBus.AmazonSQS)
+* [*https://github.com/albumprinter/Albelli.Templates.Amazon*](https://github.com/albumprinter/Albelli.Templates.Amazon)
+
+## Sample publisher and consumer
 
 Here is an example showing a sample publisher and handler for a hypothetical `OrderInfo` message.
 
-Sample publisher:
 ```csharp
 [ApiController]
 [Route("[controller]")]
@@ -41,7 +56,6 @@ public class OrderController : ControllerBase
 }
 ```
 
-Sample handler:
 ```csharp
 // See later in the design for how this was configured and mapped to the queue
 public class OrderInfoHandler : IMessageHandler<OrderInfo>
@@ -61,19 +75,50 @@ public class OrderInfoHandler : IMessageHandler<OrderInfo>
 }
 ```
 
-This document breaks down into:
+## Supported Services
 
-1. Overview of the framework components. 
-2. FAQs
-3. Questions for the community
+At this time, we plan to support the following services:
 
+**Amazon SQS -** [Amazon SQS](https://aws.amazon.com/sqs/) provides lightweight queues for messages to be sent from publishers to consumers for processing. Consuming messages can be done in parallel across multiple processes. Amazon SQS is commonly used for processing application level events asynchronously. SQS has retry policies and dead-letter queues to handle messages that cannot be processed.  SQS can be used as both the publisher and subscriber. The limitation of using Amazon SQS as the publisher is that there can be only one destination. 
+
+**Amazon SNS -** [Amazon SNS](https://aws.amazon.com/sns/) is a messaging service for both application-to-application (A2A) and application-to-person (A2P) communication. Using Amazon SNS as a publisher allows systems to fanout messages to a large number of subscriber systems, including Amazon SQS queues, AWS Lambda functions, HTTPS endpoints, and Amazon Kinesis Data Firehose, for parallel processing. 
+
+**Amazon EventBridge -** [Amazon EventBridge](https://aws.amazon.com/eventbridge/) is commonly used to hook up publishers directly to other AWS services or external third party systems via an EventBus resource. The events are pushed to subscribers based on the EventBridge rules. Common consumers of Amazon EventBridge are Lambda functions, Step Functions, and SQS queues. There is no API to read the events directly from the Amazon EventBridge.
+
+*There are no current plans to support **Amazon Kinesis** given the service is designed to have a dedicated high level library managing Kinesis shards. We also do not plan to support **Amazon MQ** - developers should use the community-provided client libraries for ActiveMQ or RabbitMQ.* *With time, the framework could be extended to support other AWS services, such as AWS Step Functions and Kinesis Data Streams. We could investigate if we could put a subscribe abstraction on top of a Kinesis stream for consuming events. The SQS pull message pump would be replaced with a Kinesis shard message pump.*
 
 ## Framework Components
 
 When systems use messaging for distributing work, there are often multiple actors in the system with each performing a different part of the message processing. For example, a commerce application could use an ASP.NET Core application to publish messages when orders are taken. Backend processes, like an ECS service or Lambda function, could be responsible for consuming the messages and performing the actual work.
 
+
+### Message Format
+
+The format will use the message envelope pattern - *sent* messages will be wrapped in an "envelope" JSON document where the framework's metadata can be set without altering the customer messages. 
+
+The first version of this design had proposed our own schema for the messaging envelope. But several community members asked us to provide support for [CloudEvents](http://cloudevents.io/)- a specification standard for describing event data in a common way. The specification is organized by the Cloud Native Computing Foundation's Serverless Working Group.
+
+The original proposed schema was very similar to the [JSON Event Format for CloudEvents](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md), so we will explore using the CloudEvents JSON format as our envelope as well. The structure of the JSON document is language-agnostic. 
+
+```
+{
+   "id" : "<unique-id-assigned-by-framework>",
+   "source" : "<where-the-message-originated>",
+   "time" : "<created-timestamp>",
+   "specversion": "1.0.2",
+   "type" : "<message-type>",
+   "data" : {
+        "OrderId" : 111,
+        "ProductId" : "a-1234",
+        "Count" : 2
+   }
+}
+```
+
+When messages are sent to the queue via an SNS topic, SNS will add its own outer envelope layer. The framework will detect that the first envelope layer of the message is the SNS layer and the Message property of that layer is the framework message.
+
 ### Configuration
-Modern .NET heavily uses dependency injection (DI). AWS SDK for .NET integrates with the .NET DI framework using the **[.NET Dependency Injection Extensions for AWS SDK for .NET](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-netcore.html#net-core-dependency-injection)**. Many of AWS’s other high level libraries integrate with DI as well.
+Modern .NET heavily uses dependency injection (DI). AWS SDK for .NET integrates with the .NET DI framework using the **[.NET Dependency Injection Extensions for AWS SDK for .NET](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-netcore.html#net-core-dependency-injection)**. Many of AWS's other high level libraries integrate with DI as well.
 
 The message processing framework will be configured through the DI framework as well. The main configuration points are:
 
@@ -119,7 +164,7 @@ public void ConfigureServices(IServiceCollection services)
         // message envelope for ALL messages published by this application
         builder.AddPublishingEventBus<InventoryCheck>(awsResourceIds.WarehouseEventBus, new PublishMetadata
         {
-            MessageType = "InventoryCheckMessage",
+            MessageType = "com.company.InventoryCheckMessage",
             Source = "OrderHandlerSystem" 
         });
     });
@@ -301,63 +346,13 @@ Backend services, such as ECS services, will need a message pump that pulls mess
 
 This component will have high concurrency and fault tolerance requirements. Talking to one customer, they said this is the part they keep reworking to improve scale and error handling in their library. We will need to establish expected performance baselines and test at scale.
 
-### Serialization format
-
-Messages to and from AWS services are sent as JSON documents. The structure of the JSON document is language agnostic. The intent of this document is a design of a .NET message processing framework, but it should be possible to to implement an equivalent framework in a different programming language so users can mix and match subscribers and publishers in different languages.
-
-The message format will use the message envelope pattern - sent messages will be wrapped in an “envelope” JSON document where the framework’s metadata can be set without altering the customer messages.
-
-```csharp
-{
-   "Id" : "<unique-id-assigned-by-framework>",
-   "Source" : "<where-the-message-originated>",
-   "Timestamp" : "<created-timestamp>",
-   "MessageType" : "<message-type>",
-   "Message" : {
-        "OrderId" : 111,
-        "ProductId" : "a-1234",
-        "Count" : 2
-   }
-}
-```
-
-#### Metadata fields
-
-- **Id** - a unique id generated by the framework for each message being sent. This id will be used in logs to help you track down issues.
-- **Source** - The framework will make a best attempt to identify where it is running and set that in the this field. For example if the message was published in a Lambda function, the framework will inspect the AWS_LAMBDA_FUNCTION_NAME environment variables to discover the source. It will also be possible to explicitly set this value while configuring the framework or when publishing a message.
-- **Timestamp** - When the message was original sent.
-- **MessageType** - A string that the framework will map to a .NET object to know how deserialize the Message property. This could be a class type name or an language-agnostic string.
-- **Message** - The message the application generated to be sent.
-
-When messages are sent to the queue via an SNS topic, SNS will add its own outer envelope layer. The framework will detect that the first envelope layer of the message is the SNS layer and the Message property of that layer is the framework message.
 
 ### Logging
 
-The framework will use .NET built in logging framework. It is required that users configure logging within the DI. Customers are able to redirect the logs to CloudWatch Logs with our [AWS.Logging](https://github.com/aws/aws-logging-dotnet) (https://github.com/aws/aws-logging-dotnet) packages.
+The framework will use .NET built in logging framework. It is required that users configure logging within the DI. Customers are able to redirect the logs to CloudWatch Logs with our [AWS.Logging](https://github.com/aws/aws-logging-dotnet) packages.
+
 
 ## FAQs
-
-### Which AWS messaging services do we plan to support?
-
-At this time, we plan to support the following services:
-
-**[Amazon SQS](https://aws.amazon.com/sqs/)** - [Amazon SQS](https://aws.amazon.com/sqs/) provides lightweight queues for messages to be sent from publishers to consumers for processing. Consuming messages can be done in parallel across multiple processes. Amazon SQS is commonly used for processing application level events asynchronously. SQS has retry policies and dead-letter queues to handle messages that cannot be processed.  SQS can be used as both the publisher and subscriber. The limitation of using Amazon SQS as the publisher is that there can be only one destination. 
-
-**[Amazon SNS](https://aws.amazon.com/sns/)** - [Amazon SNS](https://aws.amazon.com/sns/) is a messaging service for both application-to-application (A2A) and application-to-person (A2P) communication. Using Amazon SNS as a publisher allows systems to fanout messages to a large number of subscriber systems, including Amazon SQS queues, AWS Lambda functions, HTTPS endpoints, and Amazon Kinesis Data Firehose, for parallel processing. 
-
-**[Amazon EventBridge ](https://aws.amazon.com/eventbridge/)** - [Amazon EventBridge](https://aws.amazon.com/eventbridge/)is commonly used to hook up publishers directly to other AWS services or external third party systems via an EventBus resource. The events are pushed to subscribers based on the EventBridge rules. Common consumers of Amazon EventBridge are Lambda functions, Step Functions, and SQS queues. There is no API to read the events directly from the Amazon EventBridge.
-
-### Which AWS messaging services do we not plan to support (at least initially)?
-
-There are no current plans to support **Amazon Kinesis** given the service is designed to have a dedicated high level managing Kinesis shards. We also do not plan to support **Amazon MQ** - developers should use the community-provided client libraries for ActiveMQ or RabbitMQ.
-
-
-### Could this be extended to other AWS services?
-
-Perhaps, for example publishers could include AWS Step Functions and Kinesis Data Streams. 
-
-We could investigate if we could put a subscribe abstraction on top of a Kinesis stream for consuming events. The SQS pull message pump would be replace with a Kinesis shard message pump.
-
 
 ### Will the framework handle deploying my application and associated AWS resources?
 
@@ -371,7 +366,7 @@ SQS queues can be configured to have service side encryption turned on using KMS
 
 ### Can more than one message type be used for a single queue?
 
-Yes, the customer can send any number of message types in a single queue. As long as there is a mapping for the MessageType field to a .NET type and handler it will be processed.
+Yes, the customer can send any number of message types in a single queue. As long as there is a mapping for the `MessageType` field to a .NET type and handler it will be processed.
 
 ### What happens if a message in an unknown format is read?
 
@@ -379,25 +374,12 @@ If the message from the queue can not be mapped to a message type and handler th
 
 ### Can developers use a mix of languages use this library?
 
-The serialization format will be documented and can be recreated in other languages. If this project is successful we could create versions of the library in other languages with the appropriate language idioms.
+The serialization format will be documented and can be recreated in other languages, likely using [CloudEvents](http://cloudevents.io/). If this project is successful we could create versions of the library in other languages with the appropriate language idioms.
 
 ### Will FIFO topics and queues be supported?
 
 Yes, when publishing messages a developer will have the option to pass additional metadata. For FIFO topics and queues a message group id is required.
 
-
-### Why not use one of the existing community frameworks?
-
-Our main goal is to create a framework that is specific to AWS services, not a generic message processing framework. Current implementations (see the list below) do not support all the services in our proposed scope (e.g. Amazon EventBridge), and we don’t want to be constrained by the existing implementation patterns. 
-
-*Community Frameworks:*  
-https://github.com/justeat/JustSaying  
-https://masstransit-project.com/  
-https://github.com/dotnetcloud/SqsToolbox  
-https://github.com/nwestfall/MessageDelivery  
-https://github.com/BrighterCommand/Brighter  
-https://github.com/Particular/NServiceBus.AmazonSQS  
-https://github.com/albumprinter/Albelli.Templates.Amazon
 
 ## Questions for the community
 
