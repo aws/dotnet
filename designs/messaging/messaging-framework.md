@@ -298,7 +298,7 @@ public class OrderInfoHandler : IMessageHandler<OrderReceived>
 }
 ```
 
-The handler class is focused solely on business logic. The message framework is in charge of routing messages to the handler, as well as managing the visibility of the message and deleting the message if it was successfully processed. 
+The handler class is focused solely on business logic. The message processing framework is in charge of routing messages to the handler, as well as managing the visibility of the message and deleting the message if it was successfully processed. 
 
 A message is determined to be successfully processed if no uncaught exceptions were thrown and `HandleAsync` method returned `MessageStatus.Success` instead of `MessageStatus.Failed`. This enum may be expanded in the future to control how long to wait until the message is retried. 
 
