@@ -75,6 +75,11 @@ AWS X-Ray helps developers analyze and debug distributed applications. With X-Ra
 [![nuget](https://img.shields.io/nuget/v/Amazon.Extensions.S3.Encryption.svg) ![downloads](https://img.shields.io/nuget/dt/Amazon.Extensions.S3.Encryption.svg)](https://www.nuget.org/packages/Amazon.Extensions.S3.Encryption/)  
 Amazon S3 Encryption Client for .NET is a client-side encryption library designed to make it easy for everyone to encrypt and decrypt data using industry standards and best practices. It enables you to focus on the core functionality of your application, rather than on how to best encrypt and decrypt your data.
 
+[AWS .NET Distributed Cache Provider](https://github.com/awslabs/aws-dotnet-distributed-cache-provider)  
+[![nuget](https://img.shields.io/nuget/v/AWS.AspNetCore.DistributedCacheProvider.svg) ![downloads](https://img.shields.io/nuget/dt/AWS.AspNetCore.DistributedCacheProvider.svg)](https://www.nuget.org/packages/AWS.AspNetCore.DistributedCacheProvider/)  
+The AWS .NET Distributed Cache Provider provides an implementation of the ASP.NET Core interface [IDistributedCache](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/distributed) backed by Amazon DynamoDB. A common use of an `IDistributedCache` implementation is to store ephemeral, non-critical [session state](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/app-state?#session-state) data in ASP.NET Core applications.
+
+
 ## .NET Development Tools
 [AWS Toolkit for Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2022)  
 [![VS Marketplace](https://img.shields.io/vscode-marketplace/v/AmazonWebServices.AWSToolkitforVisualStudio2022.svg) ![downloads](https://img.shields.io/vscode-marketplace/d/AmazonWebServices.AWSToolkitforVisualStudio2022.svg)](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2022)    
