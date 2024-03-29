@@ -79,6 +79,9 @@ Amazon S3 Encryption Client for .NET is a client-side encryption library designe
 [![nuget](https://img.shields.io/nuget/v/AWS.AspNetCore.DistributedCacheProvider.svg) ![downloads](https://img.shields.io/nuget/dt/AWS.AspNetCore.DistributedCacheProvider.svg)](https://www.nuget.org/packages/AWS.AspNetCore.DistributedCacheProvider/)  
 The AWS .NET Distributed Cache Provider provides an implementation of the ASP.NET Core interface [IDistributedCache](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/distributed) backed by Amazon DynamoDB. A common use of an `IDistributedCache` implementation is to store ephemeral, non-critical [session state](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/app-state?#session-state) data in ASP.NET Core applications.
 
+[AWS Message Processing Framework for .NET](https://github.com/awslabs/aws-dotnet-messaging)  
+[![nuget](https://img.shields.io/nuget/v/AWS.Messaging.svg) ![downloads](https://img.shields.io/nuget/dt/AWS.Messaging.svg)](https://www.nuget.org/packages/AWS.Messaging/)  
+The AWS Message Processing Framework for .NET is an AWS-native framework that simplifies the development of .NET message processing applications that use AWS services, such as Amazon Simple Queue Service (SQS), Amazon Simple Notification Service (SNS), and Amazon EventBridge. The framework reduces the amount of boiler-plate code developers need to write, allowing you to focus on your business logic when publishing and consuming messages.
 
 ## .NET Development Tools
 [AWS Toolkit for Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2022)  
