@@ -82,11 +82,8 @@ The AWS .NET Distributed Cache Provider provides an implementation of the ASP.NE
 The AWS Message Processing Framework for .NET is an AWS-native framework that simplifies the development of .NET message processing applications that use AWS services, such as Amazon Simple Queue Service (SQS), Amazon Simple Notification Service (SNS), and Amazon EventBridge. The framework reduces the amount of boiler-plate code developers need to write, allowing you to focus on your business logic when publishing and consuming messages.
 
 ## .NET Development Tools
-[AWS Toolkit with Amazon Q for Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2022)  
-The AWS Toolkit with Amazon Q for Visual Studio 2022 is an extension for Microsoft Visual Studio 2022 on Microsoft Windows. The toolkit makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services, with Amazon Q as an integrated generative AI-powered assistant.
-
-[AWS Toolkit for Visual Studio 2017 and 2019](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)  
-The AWS Toolkit for Visual Studio 2017 and 2019 is an extension for Microsoft Visual Studio 2017 and 2019 on Microsoft Windows. The toolkit makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services.
+[AWS Toolkit for Visual Studio](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2022)  
+The AWS Toolkit for Visual Studio is an extension for Microsoft Visual Studio on Microsoft Windows. The toolkit makes it easier for developers to develop, debug, and deploy .NET and .NET Core applications using Amazon Web Services.
 
 [AWS Toolkit for JetBrains](https://github.com/aws/aws-toolkit-jetbrains)  
 [![JetBrains Marketplace](https://img.shields.io/jetbrains/plugin/v/11349-aws-toolkit.svg?label=version) ![downloads](https://img.shields.io/jetbrains/plugin/d/11349-aws-toolkit)](https://plugins.jetbrains.com/plugin/11349-aws-toolkit)  
